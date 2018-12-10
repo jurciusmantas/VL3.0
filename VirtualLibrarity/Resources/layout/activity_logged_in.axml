@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+		<TextView
+		android:textSize="80px"
+		android:textStyle="bold"
+		android:textColor="@color/color_black"
+		android:background="@color/color_button"
+		android:text="User information :"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/infoLoginTV"
+		android:layout_marginTop="50px"
+		android:gravity="center"/>
+	<TextView
+		android:textSize="30px"
+		android:textStyle="bold"
+		android:textColor="@color/color_black"
+		android:text="User name : "
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/infoUserNameTV"
+		android:layout_marginTop="30px"
+		android:layout_gravity="center|left"
+		android:layout_marginLeft="20px" />
+
+	<TextView
+		android:textSize="30px"
+		android:textStyle="bold"
+		android:textColor="@color/color_black"
+		android:text="User surname : "
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/infoUserSurnameTV"
+		android:layout_marginTop="30px"
+		android:layout_gravity="center|left"
+		android:layout_marginLeft="20px" />
+
+	<TextView
+		android:textSize="30px"
+		android:textStyle="bold"
+		android:textColor="@color/color_black"
+		android:text="User email : "
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/infoUserEmailTV"
+		android:layout_marginTop="30px"
+		android:layout_gravity="center|left"
+		android:layout_marginLeft="20px" />
+
+	<TextView
+		android:textSize="50px"
+		android:textStyle="bold"
+		android:background="@color/color_button"
+		android:textColor="@color/color_black"
+		android:text="Books to return :"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="30px"
+	    android:gravity="center"/>
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/container"
+	/>
+
+</LinearLayout>

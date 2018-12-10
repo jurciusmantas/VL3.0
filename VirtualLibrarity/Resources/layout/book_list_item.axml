@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+	<TextView
+		android:id="@+id/TVAuthor"
+		android:textSize="40px"
+		android:textStyle="bold"
+		android:textColor="@color/color_black"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text = "Author :"/>
+	<TextView 
+		android:textSize="40px"
+		android:textStyle="bold"
+		android:textColor="@color/color_black"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text = "Title :"
+	    android:id="@+id/TVTitle"/>
+	<TextView 
+		android:textSize="40px"
+		android:textStyle="bold"
+		android:textColor="@color/color_black"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text = "QR code :"
+	    android:id="@+id/TVQRCode"/>
+
+	<TextView 
+		android:textSize="40px"
+		android:textStyle="bold"
+		android:textColor="@color/color_black"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text = "Return date :"
+	    android:id="@+id/TVReturnDate"/>
+
+</LinearLayout>
