@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout
+		xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"    
+        android:rowCount="8"
+        android:columnCount="2">
+
+	<TextView
+	android:text="Name :"
+	android:textSize="40px"
+	android:textStyle="bold"
+	android:textColor="@color/color_black"/>
+
+	<EditText
+			android:id="@+id/NameET"
+			android:hint="enter your name"
+	/>
+
+	<TextView
+	android:text="Surname :"
+	android:textSize="40px"
+	android:textStyle="bold"
+	android:textColor="@color/color_black"/>
+	<EditText
+		android:id="@+id/SurameET"
+		android:hint="enter your surname"/>
+
+	<TextView
+	android:text="Email :"
+	android:textSize="40px"
+	android:textStyle="bold"
+	android:textColor="@color/color_black"/>
+
+	<EditText
+					android:id="@+id/EmailET"
+			android:hint="enter your email"
+		/>
+
+	<TextView
+	android:text="Password :"
+	android:textSize="40px"
+	android:textStyle="bold"
+	android:textColor="@color/color_black"/>
+
+	<EditText
+					android:id="@+id/PasswordET"
+			android:hint="enter your password"
+		/>
+
+	<TextView
+	android:layout_columnSpan="2"
+	android:layout_height="200px"	/>
+
+
+	<Button
+		android:id="@+id/TakeAPhotoButton"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_columnSpan="2"
+		android:text="take a photo"
+		android:textSize="30px"
+		android:background="@color/color_button"/>
+
+		<TextView
+			android:layout_columnSpan="2"
+			android:layout_height="20px"
+		/>
+
+		<Button
+		android:id="@+id/FinishRegisteringButton"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_columnSpan="2"
+		android:text="register"
+		android:textSize="30px"
+		android:background="@color/color_button"/>
+
+</GridLayout>
