@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/lib/com.app.chasebank"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+	android:orientation="vertical"
+	android:gravity="center">
+	<TextView
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="Welcome to Virtual Librarian!"
+		android:textSize="50px"
+		android:textStyle="bold"
+		android:textColor="@color/color_black"
+		android:layout_marginBottom="200px" 
+		/>
+
+	<Button
+		android:id="@+id/loginButton"
+		android:text="LOG IN"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/color_button"
+		/>
+
+		<Button
+		android:id="@+id/registerButton"
+		android:text="REGISTER"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@color/color_button"
+		android:layout_marginTop="20px"
+		/>
+</LinearLayout>
