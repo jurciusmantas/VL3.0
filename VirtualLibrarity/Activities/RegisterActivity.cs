@@ -1,14 +1,10 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Database.Sqlite;
-using Android.Graphics;
 using Android.OS;
 using Android.Provider;
-using Android.Runtime;
 using Android.Widget;
-using System;
+using VirtualLibClient;
 using VirtualLibrarity.Activities;
-using VirtualLibrarity.Database;
 
 namespace VirtualLibrarity
 {
@@ -16,23 +12,21 @@ namespace VirtualLibrarity
     public class RegisterActivity : Activity
     {
         RequestSender _requestSender = new RequestSender();
-        DbHelper _dbHelper;
-        SQLiteDatabase _database;
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             SetContentView(Resource.Layout.activity_register);
 
             Button button = FindViewById<Button>(Resource.Id.TakeAPhotoButton);
-
             button.Click += delegate
             {
                 Intent intent = new Intent(MediaStore.ActionImageCapture);
                 StartActivityForResult(intent, 0);
             };
-            _dbHelper = new DbHelper(this);
-            _database = _dbHelper.WritableDatabase;
+
+
+
             Button registerButton = FindViewById<Button>(Resource.Id.FinishRegisteringButton);
             registerButton.Click += delegate
             {
@@ -54,7 +48,7 @@ namespace VirtualLibrarity
                     content.Put("Id", 10);
                     content.Put("Face", 100);
 
-                    _database.Insert("user", null, content);
+                    // _database.Insert("user", null, content);
                    
 
                     Toast.MakeText(this, "User succesfully added", ToastLength.Long).Show();
@@ -66,15 +60,5 @@ namespace VirtualLibrarity
 
             };
         }
-
-        protected override async  void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
-        {
-            base.OnActivityResult(requestCode, resultCode, data);
-            Bitmap bitmap = (Bitmap)data.Extras.Get("data");
-            byte[] bitmapData =_requestSender.ConvertToByteArray(bitmap);
-            string image64String = Convert.ToBase64String(bitmapData);
-            await _requestSender.SendFaceAsync(image64String, true);
-        }
-        
     }
 }

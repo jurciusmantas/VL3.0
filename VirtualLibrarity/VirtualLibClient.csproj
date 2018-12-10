@@ -58,7 +58,6 @@
   <ItemGroup>
     <Compile Include="Activities\LoginProxyActivity.cs" />
     <Compile Include="Models\Book.cs" />
-    <Compile Include="Database\DbHelper.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\LoggedInActivity.cs" />
@@ -106,9 +105,6 @@
     <PackageReference Include="RestSharp">
       <Version>106.5.4</Version>
     </PackageReference>
-    <PackageReference Include="System.Data.SQLite">
-      <Version>1.0.109.2</Version>
-    </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.Dynamic.Animation">
       <Version>27.0.2.1</Version>
@@ -138,9 +134,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\unnamed.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <AndroidResource Include="Resources\layout\custom_button_view.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -150,6 +143,9 @@
     <AndroidResource Include="Resources\layout\activity_login_proxy.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Database\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
