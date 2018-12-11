@@ -2351,14 +2351,17 @@ namespace VirtualLibrarity
 			// aapt resource value: 0x7f09009a
 			public const int FinishRegisteringButton = 2131296410;
 			
+			// aapt resource value: 0x7f090097
+			public const int FirstNameET = 2131296407;
+			
+			// aapt resource value: 0x7f090098
+			public const int LastNameET = 2131296408;
+			
 			// aapt resource value: 0x7f090035
 			public const int META = 2131296309;
 			
 			// aapt resource value: 0x7f090094
 			public const int ManualLoginButton = 2131296404;
-			
-			// aapt resource value: 0x7f090097
-			public const int NameET = 2131296407;
 			
 			// aapt resource value: 0x7f090093
 			public const int PasswordET = 2131296403;
@@ -2368,9 +2371,6 @@ namespace VirtualLibrarity
 			
 			// aapt resource value: 0x7f090037
 			public const int SYM = 2131296311;
-			
-			// aapt resource value: 0x7f090098
-			public const int SurameET = 2131296408;
 			
 			// aapt resource value: 0x7f09009b
 			public const int TVAuthor = 2131296411;
@@ -3211,7 +3211,7 @@ namespace VirtualLibrarity
 		{
 			
 			// aapt resource value: 0x7f070000
-			public const int MyDB = 2131165184;
+			public const int mydb = 2131165184;
 			
 			static Raw()
 			{

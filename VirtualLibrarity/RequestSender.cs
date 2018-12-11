@@ -8,7 +8,7 @@ namespace VirtualLibrarity
 {
     class RequestSender
     {
-        private const string apiUrl = "http://10.3.8.227:45455/api";
+        private const string apiUrl = "http://localhost:8080/api";
         public async Task<int> SendFaceAsync(string image64String, bool isForSave)
         {
             

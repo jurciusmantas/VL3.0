@@ -24,9 +24,9 @@ namespace VirtualLibrarity
 
 
             TextView NameTV = FindViewById<TextView>(Resource.Id.infoUserNameTV);
-            NameTV.Text += _loggedUser.Name;
+            NameTV.Text += _loggedUser.FirstName;
             TextView SurnameTV = FindViewById<TextView>(Resource.Id.infoUserSurnameTV);
-            SurnameTV.Text += _loggedUser.Surname;
+            SurnameTV.Text += _loggedUser.LastName;
             TextView EmailTV = FindViewById<TextView>(Resource.Id.infoUserEmailTV);
             EmailTV.Text += _loggedUser.Email;
 
