@@ -79,7 +79,7 @@ namespace VirtualLibrarity.DataWorkers
         private List<Book> GetBooks(int userId)
         {
             var selectBooks = new MySqlCommand(@"
-                    SELECT b.Title, b.Author FROM books AS b
+                    SELECT b.Title, b.Author, c.Id FROM books AS b
                     INNER JOIN copies AS c ON c.BookId = b.Id
                     INNER JOIN users AS u ON u.Id = c.UserId
                     WHERE u.Id = @userId");
@@ -89,7 +89,7 @@ namespace VirtualLibrarity.DataWorkers
 
             if (selectBooksRes.Success)
                 return selectBooksRes.Data.AsEnumerable().Select(
-                    row => new Book() { Author = row.Field<string>("Author"), Title = row.Field<string>("Title") }).ToList();
+                    row => new Book() { Author = row.Field<string>("Author"), Title = row.Field<string>("Title"),QRCode = row.Field<int>("Id")}).ToList();
             else return null;
         }
     }

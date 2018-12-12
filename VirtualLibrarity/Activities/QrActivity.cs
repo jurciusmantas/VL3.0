@@ -23,6 +23,7 @@ namespace VirtualLibrarity.Activities
     [Activity(Label = "TakeABookQrActivity")]
     public class QrActivity : Activity
     {
+        RequestSender _RequestSender = new RequestSender();
         User _user;
         Button buttonBorrowBook;
         Button buttonReturnBook;
@@ -96,7 +97,7 @@ namespace VirtualLibrarity.Activities
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
 
-
+            _RequestSender.SendBookRequest(result.Text, true);
             //istrinti is bibliotekos knygu saraso (pagal barcode, kuris yra result.Text)
             //prideti prie user knygu saraso
 
@@ -114,7 +115,7 @@ namespace VirtualLibrarity.Activities
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
 
-
+            _RequestSender.SendBookRequest(result.Text, false);
             //istrinti is user knygu saraso (pagal barcode, kuris yra result.Text
             //prideti atga prie bibliotekos knygu saraso
 
