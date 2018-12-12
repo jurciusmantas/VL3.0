@@ -51,7 +51,7 @@ namespace VirtualLibrarity.Activities
         }
         private void TryUserIfNull()
         {
-            if (user.UserInfo == null)
+            if (user == null)
             {
                 Toast.MakeText(this, "Did not recieve response", ToastLength.Long).Show();
                 GoBack();

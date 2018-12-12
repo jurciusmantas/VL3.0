@@ -15,15 +15,15 @@ namespace VirtualLibrarity
 {
     public partial class User
     {
-        [JsonProperty ("id")]
+        [JsonProperty ("Id")]
         public long Id { get; set; }
-        [JsonProperty("email")]
+        [JsonProperty("Email")]
         public string Email { get; set; }
-        [JsonProperty("password")]
+        [JsonProperty("Password")]
         public string Password { get; set; }
-        [JsonProperty("name")]
-        public string Name { get; set; }
-        [JsonProperty("surname")]
-        public string Surname { get; set; }
+        [JsonProperty("Firstname")]
+        public string Firstname { get; set; }
+        [JsonProperty("Lastname")]
+        public string Lastname { get; set; }
     }
 }

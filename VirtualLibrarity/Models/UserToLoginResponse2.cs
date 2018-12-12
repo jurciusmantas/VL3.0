@@ -16,11 +16,11 @@ namespace VirtualLibrarity
 { 
     public partial class UserToLoginResponse2
     {
-        [JsonProperty ("userInfo")]
+        [JsonProperty ("UserInfo")]
         public User UserInfo { get; set; }
-        [JsonProperty("borrowedBook")]
-        public BookFromResponse[] BorrowedBooks { get; set; }
-        [JsonProperty("exception")]
+        [JsonProperty("BorrowedBooks")]
+        public List<Book> BorrowedBooks { get; set; }
+        [JsonProperty("Exception")]
         public string Exception { get; set; }
     }
 }

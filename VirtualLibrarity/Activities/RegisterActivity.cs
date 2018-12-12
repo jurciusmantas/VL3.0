@@ -49,8 +49,8 @@ namespace VirtualLibrarity
                     && isPhotoTaken)
                 {
                     User user = new User();
-                    user.Name = NameET.Text;
-                    user.Surname = SurnameET.Text;
+                    user.Firstname = NameET.Text;
+                    user.Lastname = SurnameET.Text;
                     user.Email = EmailET.Text;
                     user.Password = PasswordET.Text;
                     

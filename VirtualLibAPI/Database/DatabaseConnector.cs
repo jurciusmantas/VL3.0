@@ -11,7 +11,7 @@ namespace VirtualLibrarity.Database
 
         public static void DatabaseConnectionInit()
         {
-            string connString = "server=localhost;uid=root;pwd=123123;database=vl";
+            string connString = "server=localhost;uid=root;pwd=skacania;database=vl";
             _conn = new MySqlConnection();
             _conn.ConnectionString = connString;
         }
