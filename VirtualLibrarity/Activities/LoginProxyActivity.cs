@@ -1,9 +1,10 @@
-﻿
-using Android.App;
+﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Support.Animation;
+using Android.Views;
 using Android.Widget;
-using Newtonsoft.Json;
+using System.Threading;
 
 namespace VirtualLibrarity.Activities
 {
@@ -12,33 +13,69 @@ namespace VirtualLibrarity.Activities
     {
         private RequestSender _requestSender = new RequestSender();
         private bool _isAuto;
+        private bool _toTop;
+        private bool _isSendingRequest;
         private string _email;
         private string _password;
-        private UserToLoginResponse2 user;
+        private TextView _animTV;
+        private User _user;
+        private UserToLoginResponse2 _userResponse;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_login_proxy);
-            SendRequest();
 
+            _toTop = false;
+            _isSendingRequest = true;
+            _animTV = FindViewById<TextView>(Resource.Id.animTV);
+
+            Thread thread = new Thread(delegate ()
+            {
+                SendRequest();
+                _isSendingRequest = false;
+            });
+            Thread threadAnim = new Thread(delegate ()
+            {
+                StartAnimation();
+            });
+            threadAnim.Start();
+            thread.Start();
         }
+
+        public void StartAnimation()
+        {
+            while (_isSendingRequest)
+            {
+                if (_animTV.Text.Length == 3)
+                    RunOnUiThread( () =>
+                    _animTV.Text = ".");
+                else
+                    RunOnUiThread( () =>
+                    _animTV.Text += ".");
+
+                Thread.Sleep(300);
+            }
+            
+        }
+
         private void SendRequest()
         {
             _isAuto = Intent.GetBooleanExtra("isAuto", false);
             if (_isAuto)
             {
                 string image = Intent.GetStringExtra("image");
-                user = LoginAuto(image);
+                _userResponse = LoginAuto(image);
             }
             else
             {
                 _email = Intent.GetStringExtra("email");
                 _password = Intent.GetStringExtra("password");
-                user = LoginManual(_email, _password);
+                _userResponse = LoginManual(_email, _password);
             }
             TryUserIfNull();
         }
+
         private UserToLoginResponse2 LoginAuto(string image)
         {
             return _requestSender.SendLoginRequest(image);
@@ -50,31 +87,22 @@ namespace VirtualLibrarity.Activities
         }
         private void TryUserIfNull()
         {
-            if (user.UserInfo == null)
+            if (_userResponse.UserInfo == null)
             {
                 Toast.MakeText(this, "Did not recieve response", ToastLength.Long).Show();
                 GoBack();
             }
-            else
+            else if (_userResponse.Exception != null)
             {
-                SendUser();
-            }
-        }
-        private void SendUser()
-        {
-            if (user.Exception != null)
-            {
-                Toast.MakeText(this, user.Exception, ToastLength.Long).Show();
+                Toast.MakeText(this, _userResponse.Exception, ToastLength.Long).Show();
                 GoBack();
             }
             else
             {
-                Intent intent = new Intent(this, typeof(UserInfoActivity));
-                string userString = JsonConvert.SerializeObject(user);
-                intent.PutExtra("user", userString);
-                StartActivity(intent);
+                _user = _userResponse.UserInfo;
             }
         }
+
         private void GoBack()
         {
 
