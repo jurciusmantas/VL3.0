@@ -16,8 +16,8 @@ namespace VirtualLibrarity
 {
     public partial class Book
     {
-       // [JsonProperty ("QRCode")]
-       // public string QRCode { get; set; }
+        [JsonProperty ("QRCode")]
+        public int QRCode { get; set; }
         [JsonProperty("Title")]
         public string Title { get; set; }
         [JsonProperty("Author")]

@@ -9,7 +9,7 @@ using VirtualLibrarity.Models;
 namespace VirtualLibrarity
 {
     [Activity(Label = "ManualLoginActivity")]
-    public class LoggedInActivity : Activity
+    public class UserInfoActivity : Activity
     {
         UserToLoginResponse2 user;
         LinearLayout _container;
@@ -36,7 +36,7 @@ namespace VirtualLibrarity
         {
             _container = FindViewById<LinearLayout>(Resource.Id.container);
 
-            if (user.BorrowedBooks.Count > 0)
+            if (user.BorrowedBooks.Count> 0)
             {
                 foreach (Book bookModel in user.BorrowedBooks)
                 {
@@ -45,8 +45,13 @@ namespace VirtualLibrarity
 
                     TextView AuthorTV = addView.FindViewById<TextView>(Resource.Id.TVAuthor);
                     TextView TitleTV = addView.FindViewById<TextView>(Resource.Id.TVTitle);
+                    TextView QRCodeTV = addView.FindViewById<TextView>(Resource.Id.TVQRCode);
+                    TextView ReturnDateTV = addView.FindViewById<TextView>(Resource.Id.TVReturnDate);
+
                     AuthorTV.Text += bookModel.Author;
                     TitleTV.Text += bookModel.Title;
+                    QRCodeTV.Text += bookModel.QRCode;
+                    //ReturnDateTV.Text += bookModel.ReturnDate.ToString();
                     _container.AddView(addView);
                 }
             }

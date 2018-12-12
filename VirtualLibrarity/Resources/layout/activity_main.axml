@@ -5,23 +5,34 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 	android:orientation="vertical"
-	android:gravity="center">
+	>
 	<TextView
+		android:id="@+id/txtWelcome"
 		android:layout_width="wrap_content"
-		android:layout_height="wrap_content"
-		android:text="Welcome to Virtual Librarian!"
-		android:textSize="50px"
+		android:layout_height="30dp"
+		android:text="Welcome to Virtual Librarity!"
+		android:textSize="21sp"
 		android:textStyle="bold"
-		android:textColor="@color/color_black"
-		android:layout_marginBottom="200px" 
-		/>
+		android:layout_marginStart="65dp"
+		android:layout_marginTop="20dp" />
+
+	<ImageView
+		android:id="@+id/logoImg"
+		android:layout_width="150dp"
+		android:layout_height="150dp"
+		android:src="@drawable/logo"
+		android:layout_marginTop="60dp"
+		android:layout_marginStart="110dp"
+		android:layout_marginBottom="100dp" />
+
 
 	<Button
 		android:id="@+id/loginButton"
 		android:text="LOG IN"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@color/color_button"
+		android:background="#A8C1B2"
+		android:textColor="#347600"
 		/>
 
 		<Button
@@ -29,7 +40,8 @@
 		android:text="REGISTER"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:background="@color/color_button"
 		android:layout_marginTop="20px"
+		android:background="#A8C1B2"
+		android:textColor="#347600"
 		/>
 </LinearLayout>
