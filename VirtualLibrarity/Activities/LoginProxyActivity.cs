@@ -69,7 +69,7 @@ namespace VirtualLibrarity.Activities
             }
             else
             {
-                Intent intent = new Intent(this, typeof(UserInfoActivity));
+                Intent intent = new Intent(this, typeof(LoggedActivity));
                 string userString = JsonConvert.SerializeObject(user);
                 intent.PutExtra("user", userString);
                 StartActivity(intent);
