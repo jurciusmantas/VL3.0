@@ -17,11 +17,11 @@ namespace VirtualLibrarity.Controllers
         {
             if (book.IsTaking)
             {
-                return bookRecognitionHandler.Take(book.QRCode);
+                return bookRecognitionHandler.Take(book.QRCode, book.UserId);
             }
             else
             {
-                return bookRecognitionHandler.Return(book.QRCode);
+                return bookRecognitionHandler.Return(book.QRCode, book.UserId);
             }
         }
 

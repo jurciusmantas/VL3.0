@@ -1,6 +1,7 @@
 ﻿using MySql.Data.MySqlClient;
 using System;
 using System.Data;
+using System.Diagnostics;
 using VirtualLibrarity.Models.Entities;
 
 namespace VirtualLibrarity.Database
@@ -48,6 +49,28 @@ namespace VirtualLibrarity.Database
                     Success = false,
                     Message = exc.Message
                 };
+            }
+            finally
+            {
+                _conn.Close();
+            }
+        }
+        public static bool UpdateData(MySqlCommand cmd)
+        {
+            try
+            {
+                _conn.Open();
+                cmd.Connection = _conn;
+                int rowsAffected = cmd.ExecuteNonQuery();
+                if (rowsAffected > 0)
+                    return true;
+                else
+                    return false;
+            }
+            catch (Exception exc)
+            {
+                Debug.Print(exc.Message);
+                return false;
             }
             finally
             {
