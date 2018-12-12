@@ -56,13 +56,17 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Activities\AvailableBooksActivity.cs" />
+    <Compile Include="Activities\LoggedActivity.cs" />
+    <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\LoginProxyActivity.cs" />
+    <Compile Include="Activities\MainActivity.cs" />
+    <Compile Include="Activities\QrActivity.cs" />
+    <Compile Include="Activities\RegisterActivity.cs" />
+    <Compile Include="Activities\UserInfoActivity.cs" />
+    <Compile Include="Adapters\ListAdapter.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Database\DbHelper.cs" />
-    <Compile Include="Activities\LoginActivity.cs" />
-    <Compile Include="Activities\MainActivity.cs" />
-    <Compile Include="Activities\LoggedInActivity.cs" />
-    <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Models\BookFromResponse.cs" />
     <Compile Include="Models\UserToLoginResponse2.cs" />
     <Compile Include="RequestSender.cs" />
@@ -79,9 +83,6 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_main.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
     <AndroidResource Include="Resources\values\colors.xml" />
     <AndroidResource Include="Resources\values\ic_launcher_background.xml" />
     <AndroidResource Include="Resources\values\strings.xml" />
@@ -168,38 +169,26 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_login.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_register.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\activity_logged_in.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <AndroidResource Include="Resources\layout\book_list_item.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="Assets\unnamed.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <AndroidResource Include="Resources\layout\custom_button_view.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\bookListActivity.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
-    <AndroidResource Include="Resources\layout\activity_login_proxy.axml">
-      <SubType>Designer</SubType>
-    </AndroidResource>
+    <AndroidResource Include="Resources\layout\activity_available_books.axml" />
+    <AndroidResource Include="Resources\layout\activity_logged.axml" />
+    <AndroidResource Include="Resources\layout\activity_logged_in.axml" />
+    <AndroidResource Include="Resources\layout\activity_login.axml" />
+    <AndroidResource Include="Resources\layout\activity_login_proxy.axml" />
+    <AndroidResource Include="Resources\layout\activity_main.axml" />
+    <AndroidResource Include="Resources\layout\activity_qr.axml" />
+    <AndroidResource Include="Resources\layout\activity_register.axml" />
+    <AndroidResource Include="Resources\layout\book_list_item.axml" />
+    <AndroidResource Include="Resources\layout\bookListActivity.axml" />
+    <AndroidResource Include="Resources\layout\custom_button_view.axml" />
+    <AndroidResource Include="Resources\layout\ListRow.axml" />
+    <AndroidResource Include="Resources\drawable\all.jpg" />
+    <AndroidResource Include="Resources\drawable\logo.png" />
+    <AndroidResource Include="Resources\drawable\outIc.png" />
+    <AndroidResource Include="Resources\drawable\qr.png" />
+    <AndroidResource Include="Resources\drawable\returnIc.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
