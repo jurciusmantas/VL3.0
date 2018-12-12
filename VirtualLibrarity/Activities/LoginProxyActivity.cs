@@ -4,6 +4,7 @@ using Android.OS;
 using Android.Support.Animation;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 using System.Threading;
 
 namespace VirtualLibrarity.Activities
@@ -18,7 +19,6 @@ namespace VirtualLibrarity.Activities
         private string _email;
         private string _password;
         private TextView _animTV;
-        private User _user;
         private UserToLoginResponse2 _userResponse;
 
         protected override void OnCreate(Bundle savedInstanceState)
@@ -34,6 +34,10 @@ namespace VirtualLibrarity.Activities
             {
                 SendRequest();
                 _isSendingRequest = false;
+                string userinfo = JsonConvert.SerializeObject(_userResponse);
+                Intent intent = new Intent(this, typeof(UserInfoActivity));
+                intent.PutExtra("user", userinfo);
+                StartActivity(intent);
             });
             Thread threadAnim = new Thread(delegate ()
             {
@@ -55,8 +59,7 @@ namespace VirtualLibrarity.Activities
                     _animTV.Text += ".");
 
                 Thread.Sleep(300);
-            }
-            
+            }          
         }
 
         private void SendRequest()
@@ -92,20 +95,17 @@ namespace VirtualLibrarity.Activities
                 Toast.MakeText(this, "Did not recieve response", ToastLength.Long).Show();
                 GoBack();
             }
-            else if (_userResponse.Exception != null)
+            if (_userResponse.Exception != null)
             {
                 Toast.MakeText(this, _userResponse.Exception, ToastLength.Long).Show();
                 GoBack();
-            }
-            else
-            {
-                _user = _userResponse.UserInfo;
             }
         }
 
         private void GoBack()
         {
-
+            Intent intent = new Intent(this, typeof(LoginActivity));
+            StartActivity(intent);
         }
     }
 }
