@@ -9,7 +9,7 @@ namespace VirtualLibrarity.DataWorkers
     {
         public bool Return(string QRCode)
         {
-            //return book
+            //return books
             return false;
         }
         public bool Take(string QRCode)
