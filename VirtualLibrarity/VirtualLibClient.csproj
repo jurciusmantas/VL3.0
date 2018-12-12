@@ -175,14 +175,13 @@
     </Content>
     <AndroidResource Include="Resources\layout\activity_available_books.axml" />
     <AndroidResource Include="Resources\layout\activity_logged.axml" />
-    <AndroidResource Include="Resources\layout\activity_logged_in.axml" />
+    <AndroidResource Include="Resources\layout\activity_user_info.axml" />
     <AndroidResource Include="Resources\layout\activity_login.axml" />
     <AndroidResource Include="Resources\layout\activity_login_proxy.axml" />
     <AndroidResource Include="Resources\layout\activity_main.axml" />
     <AndroidResource Include="Resources\layout\activity_qr.axml" />
     <AndroidResource Include="Resources\layout\activity_register.axml" />
     <AndroidResource Include="Resources\layout\book_list_item.axml" />
-    <AndroidResource Include="Resources\layout\bookListActivity.axml" />
     <AndroidResource Include="Resources\layout\custom_button_view.axml" />
     <AndroidResource Include="Resources\layout\ListRow.axml" />
     <AndroidResource Include="Resources\drawable\all.jpg" />

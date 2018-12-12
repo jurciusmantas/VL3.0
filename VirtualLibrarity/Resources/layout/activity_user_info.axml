@@ -51,6 +51,32 @@
 		android:layout_gravity="center|left"
 		android:layout_marginLeft="20px" />
 
+	<LinearLayout
+		android:layout_marginTop="20px"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal">
+		<Button
+		android:layout_width="300px"
+		android:layout_height="100px"
+		android:background="#A8C1B2"
+		android:textColor="#347600"
+		android:text="Return book"
+		android:textStyle="bold"
+		android:layout_marginLeft="70px"
+		android:id="@+id/btnReturn"/>
+
+		<Button
+		android:id="@+id/btnTake"
+		android:layout_marginLeft="30px"
+		android:layout_width="300px"
+		android:layout_height="100px"
+		android:textStyle="bold"
+		android:background="#A8C1B2"
+		android:textColor="#347600"
+		android:text="Take book"/>
+	</LinearLayout>
+
 	<TextView
 		android:textSize="50px"
 		android:textStyle="bold"
