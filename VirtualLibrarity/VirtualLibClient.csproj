@@ -57,12 +57,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Activities\LoginProxyActivity.cs" />
-    <Compile Include="Database\DatabaseService.cs" />
     <Compile Include="Models\Book.cs" />
+    <Compile Include="Database\DbHelper.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\LoggedInActivity.cs" />
     <Compile Include="Activities\RegisterActivity.cs" />
+    <Compile Include="Models\BookFromResponse.cs" />
+    <Compile Include="Models\UserToLoginResponse2.cs" />
     <Compile Include="RequestSender.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,6 +74,9 @@
     <None Include="Resources\AboutResources.txt" />
     <None Include="Properties\AndroidManifest.xml" />
     <None Include="Assets\AboutAssets.txt" />
+    <AndroidResource Include="Resources\Raw\MyDB.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </AndroidResource>
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\layout\activity_main.axml">
@@ -100,8 +105,14 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.1</Version>
+    </PackageReference>
     <PackageReference Include="RestSharp">
       <Version>106.5.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Data.SQLite">
+      <Version>1.0.109.2</Version>
     </PackageReference>
     <PackageReference Include="Xamarin.Android.Support.Design" Version="27.0.2.1" />
     <PackageReference Include="Xamarin.Android.Support.Dynamic.Animation">
@@ -132,6 +143,9 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\unnamed.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <AndroidResource Include="Resources\layout\custom_button_view.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
@@ -141,9 +155,6 @@
     <AndroidResource Include="Resources\layout\activity_login_proxy.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Raw\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

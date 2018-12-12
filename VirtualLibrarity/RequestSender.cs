@@ -2,55 +2,52 @@
 using System.IO;
 using System.Threading.Tasks;
 using Android.Graphics;
+using Newtonsoft.Json;
 using RestSharp;
 
 namespace VirtualLibrarity
 {
     class RequestSender
     {
-        private const string apiUrl = "http://localhost:8080/api";
-        public async Task<int> SendFaceAsync(string image64String, bool isForSave)
+        private const string apiUrl = "http://192.168.0.102:45455/";
+        public UserToLoginResponse2 SendLoginRequest(string image64String)
         {
-            
             RestClient client = new RestClient(apiUrl);
-            var request = new RestRequest("/Registration", Method.POST) { RequestFormat = DataFormat.Json };
-            request.AddBody(new { image64String, isForSave});
-
-
+            var request = new RestRequest("api/faces", Method.POST) { RequestFormat = DataFormat.Json };
+            request.AddBody(new { image64String });
             var responseTask = client.ExecuteTaskAsync(request);
-            var response = await responseTask;
-            try
-            {
-                Console.Write(response.Content);
-                Console.Write(response.StatusCode);
-                return int.Parse(response.Content);
-            }
-            catch(Exception ex)
-            {
-                Console.Write(ex.Data);
-                return 0;
-            }
+            var response = responseTask.Result;
+            var result = JsonConvert.DeserializeObject<UserToLoginResponse2>(response.Content);
+            return result;
         }
-        public void SendLoginFace(string image64String, bool isForSave)
+        public int SendRegisterRequest(string image64String, User user)
         {
             RestClient client = new RestClient(apiUrl);
-            var request = new RestRequest("/faces", Method.POST) { RequestFormat = DataFormat.Json };
-            request.AddBody(new { image64String, isForSave });
-
-
+            var request = new RestRequest("register", Method.POST) { RequestFormat = DataFormat.Json };
+            request.AddBody(new { user, image64String });
             var responseTask = client.ExecuteTaskAsync(request);
             var response = responseTask.Result;
             try
             {
                 Console.Write(response.Content);
                 Console.Write(response.StatusCode);
-                //return int.Parse(response.Content);
+                return int.Parse(response.Content);
             }
             catch (Exception ex)
             {
                 Console.Write(ex.Data);
-                //return 0;
+                return -1;
             }
+        }
+        public UserToLoginResponse2 SendLoginRequest(string email, string password)
+        {
+            RestClient client = new RestClient(apiUrl);
+            var request = new RestRequest("login/byargs", Method.POST) { RequestFormat = DataFormat.Json };
+            request.AddBody(new { email, password });
+            var responseTask = client.ExecuteTaskAsync(request);
+            var response = responseTask.Result;
+            var result = JsonConvert.DeserializeObject<UserToLoginResponse2>(response.Content);
+            return result;
         }
         public byte[] ConvertToByteArray(Bitmap bitmap)
         {

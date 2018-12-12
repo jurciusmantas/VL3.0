@@ -10,13 +10,17 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using Newtonsoft.Json;
 
-namespace VirtualLibrarity.Database
+namespace VirtualLibrarity
 {
-    class Book
+    public partial class Book
     {
+        [JsonProperty ("QRCode")]
+        public string QRCode { get; set; }
+        [JsonProperty("author")]
         public string Author { get; set; }
+        [JsonProperty("title")]
         public string Title { get; set; }
-        public int QRCode { get; set; }
     }
 }

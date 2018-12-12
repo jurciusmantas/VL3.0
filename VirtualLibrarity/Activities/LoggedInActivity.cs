@@ -1,34 +1,33 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
+using Android.Views;
 using Android.Widget;
-using VirtualLibClient;
+using Newtonsoft.Json;
+using VirtualLibrarity.Models;
 
 namespace VirtualLibrarity
 {
     [Activity(Label = "ManualLoginActivity")]
     public class LoggedInActivity : Activity
     {
+        UserToLoginResponse2 user;
         LinearLayout _container;
-        User _loggedUser;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+
             SetContentView(Resource.Layout.activity_logged_in);
-   
-            string extraData = Intent.GetStringExtra("userID");
 
-            // kreiptis i db ir gauti useri
-
-            _loggedUser = new User(); // <- pakeisti i grazinta is db
-
+            string userString = Intent.GetStringExtra("user");
+            user = JsonConvert.DeserializeObject<UserToLoginResponse2>(userString);
 
             TextView NameTV = FindViewById<TextView>(Resource.Id.infoUserNameTV);
-            NameTV.Text += _loggedUser.FirstName;
+            NameTV.Text += user.UserInfo.Name;
             TextView SurnameTV = FindViewById<TextView>(Resource.Id.infoUserSurnameTV);
-            SurnameTV.Text += _loggedUser.LastName;
+            SurnameTV.Text += user.UserInfo.Surname;
             TextView EmailTV = FindViewById<TextView>(Resource.Id.infoUserEmailTV);
-            EmailTV.Text += _loggedUser.Email;
+            EmailTV.Text += user.UserInfo.Email;
 
             AddBooksToReturnList();
         }
@@ -37,20 +36,25 @@ namespace VirtualLibrarity
         {
             _container = FindViewById<LinearLayout>(Resource.Id.container);
 
+            if (user.BorrowedBooks.Length > 0)
+            {
+                foreach (BookFromResponse bookModel in user.BorrowedBooks)
+                {
+                    LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(Context.LayoutInflaterService);
+                    View addView = layoutInflater.Inflate(Resource.Layout.book_list_item, null);
 
-            /*** LOGIKA KAIP SUTALPINT GAUTA ATS I UI******
-            LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(Context.LayoutInflaterService);
-            View addView = layoutInflater.Inflate(Resource.Layout.book_list_item, null);
+                    TextView AuthorTV = addView.FindViewById<TextView>(Resource.Id.TVAuthor);
+                    TextView TitleTV = addView.FindViewById<TextView>(Resource.Id.TVTitle);
+                    TextView QRCodeTV = addView.FindViewById<TextView>(Resource.Id.TVQRCode);
+                    TextView ReturnDateTV = addView.FindViewById<TextView>(Resource.Id.TVReturnDate);
 
-            TextView AuthorTV = addView.FindViewById<TextView>(Resource.Id.TVAuthor);
-            TextView TitleTV = addView.FindViewById<TextView>(Resource.Id.TVTitle);
-            TextView QRCodeTV = addView.FindViewById<TextView>(Resource.Id.TVQRCode);
-
-            AuthorTV.Text += bookInfo.GetString(selectData.GetColumnIndex("Author"));
-            TitleTV.Text += bookInfo.GetString(selectData.GetColumnIndex("Title"));
-            QRCodeTV.Text += bookInfo.GetInt(selectData.GetColumnIndex("QRCode")).ToString();
-
-            _container.AddView(addView);*/
+                    AuthorTV.Text += bookModel.Book.Author;
+                    TitleTV.Text += bookModel.Book.Title;
+                    QRCodeTV.Text += bookModel.Book.QRCode;
+                    ReturnDateTV.Text += bookModel.ReturnDate.ToString();
+                    _container.AddView(addView);
+                }
+            }
         }
     }
 }

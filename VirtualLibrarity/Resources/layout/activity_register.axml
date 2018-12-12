@@ -13,7 +13,7 @@
 	android:textColor="@color/color_black"/>
 
 	<EditText
-			android:id="@+id/FirstNameET"
+			android:id="@+id/NameET"
 			android:hint="enter your name"
 	/>
 
@@ -23,7 +23,7 @@
 	android:textStyle="bold"
 	android:textColor="@color/color_black"/>
 	<EditText
-		android:id="@+id/LastNameET"
+		android:id="@+id/SurameET"
 		android:hint="enter your surname"/>
 
 	<TextView
