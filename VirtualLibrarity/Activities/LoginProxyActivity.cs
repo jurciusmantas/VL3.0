@@ -10,7 +10,6 @@ namespace VirtualLibrarity.Activities
     [Activity(Label = "LoginProxyActivity")]
     public class LoginProxyActivity : Activity
     {
-        private int _id;
         private RequestSender _requestSender = new RequestSender();
         private bool _isAuto;
         private string _email;

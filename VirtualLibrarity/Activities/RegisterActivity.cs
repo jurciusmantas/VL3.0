@@ -1,6 +1,5 @@
 ﻿using Android.App;
 using Android.Content;
-using Android.Database.Sqlite;
 using Android.Graphics;
 using Android.OS;
 using Android.Provider;
@@ -8,17 +7,12 @@ using Android.Runtime;
 using Android.Widget;
 using System;
 using VirtualLibrarity.Activities;
-using VirtualLibrarity.Database;
 
 namespace VirtualLibrarity
 {
     [Activity(Label = "RegisterActivity")]
     public class RegisterActivity : Activity
     {
-        private string email;
-        private string password;
-        private string name;
-        private string surname;
         private bool isPhotoTaken;
         private string image64String;
         RequestSender _requestSender = new RequestSender();

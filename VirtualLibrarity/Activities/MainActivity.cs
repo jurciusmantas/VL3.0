@@ -12,8 +12,8 @@ namespace VirtualLibrarity.Activities
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme", MainLauncher = true)]
     public class MainActivity : AppCompatActivity
     {
+        private bool _LoginPressed;
         private SpringAnimation _springAnim;
-        private bool _LoginPressed = false;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
