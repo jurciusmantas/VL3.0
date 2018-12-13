@@ -91,10 +91,18 @@ namespace VirtualLibrarity.Activities
         private void TryUserIfNull()
         {
             if (_userResponse == null)
+            {
+                RunOnUiThread(() =>
+               Toast.MakeText(this, "Did not get response", ToastLength.Long).Show());
                 GoBack();
+            }
             
             if (_userResponse.Exception != null)
-                GoBack();
+            {
+                RunOnUiThread(() =>
+               Toast.MakeText(this, "Did not get response", ToastLength.Long).Show());
+
+            }
         }
 
         private void GoBack()

@@ -54,12 +54,18 @@ namespace VirtualLibrarity
 
             _buttonTake.Click += async delegate
                 {
-                    _scanner.UseCustomOverlay = false;
-                    _scanner.TopText = "Hold the camera up to the barcode\nAbout 15 centimeters away";
-                    _scanner.BottomText = "Wait for the barcode to automatically scan!";
-                    var result = await _scanner.Scan();
+                    if (user.BorrowedBooks.Count >= 3)
+                    {
+                        _scanner.UseCustomOverlay = false;
+                        _scanner.TopText = "Hold the camera up to the barcode\nAbout 15 centimeters away";
+                        _scanner.BottomText = "Wait for the barcode to automatically scan!";
+                        var result = await _scanner.Scan();
 
-                    HandleScanResultBorrow(result);
+                        HandleScanResultBorrow(result);
+                    }
+                    else
+                        RunOnUiThread(() =>
+                       Toast.MakeText(this, "Please return some books first!", ToastLength.Long).Show());
                 };
 
             _buttonReturn.Click += async delegate 
