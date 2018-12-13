@@ -9,7 +9,7 @@ namespace VirtualLibrarity
 {
     class RequestSender
     {
-        private const string apiUrl = "http://http://192.168.0.144:45455/";
+        private const string apiUrl = "http://localhost:8080/";
         public UserToLoginResponse2 SendLoginRequest(string image64String)
         {
             RestClient client = new RestClient(apiUrl);

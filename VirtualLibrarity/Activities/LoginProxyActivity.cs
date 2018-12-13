@@ -5,6 +5,7 @@ using Android.Support.Animation;
 using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
+using System;
 using System.Threading;
 
 namespace VirtualLibrarity.Activities
@@ -34,6 +35,8 @@ namespace VirtualLibrarity.Activities
             {
                 SendRequest();
                 _isSendingRequest = false;
+                if (_userResponse == null)
+                    return;
                 string userinfo = JsonConvert.SerializeObject(_userResponse);
                 Intent intent = new Intent(this, typeof(UserInfoActivity));
                 intent.PutExtra("user", userinfo);
@@ -90,18 +93,29 @@ namespace VirtualLibrarity.Activities
         }
         private void TryUserIfNull()
         {
-            if (_userResponse == null)
+            try
             {
-                RunOnUiThread(() =>
-               Toast.MakeText(this, "Did not get response", ToastLength.Long).Show());
-                GoBack();
-            }
-            
-            if (_userResponse.Exception != null)
-            {
-                RunOnUiThread(() =>
-               Toast.MakeText(this, "Did not get response", ToastLength.Long).Show());
 
+
+                if (_userResponse is null)
+                {
+                    RunOnUiThread(() =>
+                   Toast.MakeText(this, "Did not get response", ToastLength.Long).Show());
+                    GoBack();
+                }
+
+                if (_userResponse.Exception == null)
+                {
+                    RunOnUiThread(() =>
+                   Toast.MakeText(this, _userResponse.Exception, ToastLength.Long).Show());
+
+                }
+            }
+            catch (Exception exc)
+            {
+                RunOnUiThread(() =>
+               Toast.MakeText(this, exc.Message, ToastLength.Long).Show());
+                GoBack();
             }
         }
 
