@@ -37,10 +37,7 @@ namespace VirtualLibrarity
 
             TextView NameTV = FindViewById<TextView>(Resource.Id.infoUserNameTV);
             NameTV.Text += user.UserInfo.Firstname;
-            // TextView SurnameTV = FindViewById<TextView>(Resource.Id.infoUserSurnameTV);
-            // SurnameTV.Text += user.UserInfo.Lastname;
-            // TextView EmailTV = FindViewById<TextView>(Resource.Id.infoUserEmailTV);
-            // EmailTV.Text += user.UserInfo.Email;
+
 
             _buttonQuit = FindViewById<ImageButton>(Resource.Id.outButton);
 
@@ -55,7 +52,7 @@ namespace VirtualLibrarity
 
             _buttonTake.Click += async delegate
                 {
-                    if (user.BorrowedBooks.Count >= 3)
+                    if (user.BorrowedBooks.Count < 3)
                     {
                         _scanner.UseCustomOverlay = false;
                         _scanner.TopText = "Hold the camera up to the barcode\nAbout 15 centimeters away";
@@ -126,8 +123,7 @@ namespace VirtualLibrarity
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
             BookResponse bookResponse = _RequestSender.SendBookRequest(result.Text, true,user.UserInfo.Id);
-            //istrinti is bibliotekos knygu saraso (pagal barcode, kuris yra result.Text)
-            //prideti prie user knygu saraso
+
             if (bookResponse != null && bookResponse.WasUpdated)
             {
                 user.BorrowedBooks.Add(bookResponse.BookInfo);
@@ -148,8 +144,6 @@ namespace VirtualLibrarity
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
             _QrCode = result.Text;
             BookResponse bookResponse = _RequestSender.SendBookRequest(_QrCode, false, user.UserInfo.Id);
-            //istrinti is user knygu saraso (pagal barcode, kuris yra result.Text
-            //prideti atga prie bibliotekos knygu saraso
 
 
             if (bookResponse != null && bookResponse.WasUpdated)

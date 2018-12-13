@@ -49,7 +49,7 @@ namespace VirtualLibrarity.Activities
 
                 for (int i = 0; i <= (checkedBooks.Count() - 1); i++)
                 {
-                   //prideti useriui prie jo saraso pasiskolinta knyga
+
                     booksInLibrary = ChangeList(booksInLibrary, i);
                 }
 
@@ -62,10 +62,6 @@ namespace VirtualLibrarity.Activities
             {
                 List<Book> books = new List<Book>();
 
-                //gauti is duombazes bibliotekos knygas
-             
-           
-
                 if (books == null)
                 {
                     return null;
@@ -75,7 +71,6 @@ namespace VirtualLibrarity.Activities
 
             List<Book> UpdateList(List<Book> books)
             {
-                //istrinti is knygu saraso ta knyga, kuria pasieme useris
 
                 return null;
             }

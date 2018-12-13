@@ -69,7 +69,7 @@ namespace VirtualLibrarity
             Bitmap bitmap = (Bitmap)data.Extras.Get("data");
             byte[] bitmapData =_requestSender.ConvertToByteArray(bitmap);
             image64String = Convert.ToBase64String(bitmapData);
-            //await _requestSender.SendFaceAsync(image64String, true);
+
         }
         
     }

@@ -30,12 +30,6 @@ namespace VirtualLibrarity.Activities
             TextView userNameTV = FindViewById<TextView>(Resource.Id.infoUserNameTV);
 
 
-            User userToLogin;
-            //userToLogin = JsonConvert.DeserializeObject<User>(Intent.GetStringExtra("User"));
-           // userNameTV.Text = userToLogin.FirstName;
-
-            //PRIDERI PRIE userNameTV.Text vartotojo varda
-
             logOutButton.Click += delegate
             {
                 Intent intent = new Intent(this, typeof(MainActivity));
@@ -45,21 +39,13 @@ namespace VirtualLibrarity.Activities
             borrowedBooksButton.Click += delegate
             {
                 Intent intent = new Intent(this, typeof(UserInfoActivity));
-               // intent.PutExtra("User", JsonConvert.SerializeObject(userToLogin)); //perkelti user duomenis
                 StartActivity(intent);
             };
 
-            takeOrReturnBookQRButton.Click += delegate
-            {
-                Intent intent = new Intent(this, typeof(QrActivity));
-               // intent.PutExtra("User", JsonConvert.SerializeObject(userToLogin)); //perkelti user duomenis
-                StartActivity(intent);
-            };
 
             availableBooksButton.Click += delegate
             {
                 Intent intent = new Intent(this, typeof(AvailableBooksActivity));
-               // intent.PutExtra("User", JsonConvert.SerializeObject(userToLogin)); //perkelti user duomenis
                 StartActivity(intent);
             };
         }
