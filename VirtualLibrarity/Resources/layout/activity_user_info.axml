@@ -9,13 +9,22 @@
 		android:textSize="70px"
 		android:textStyle="bold"
 		android:textColor="#073a5a"
-		android:text="Hello,"
+		android:text="Hello, "
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:id="@+id/infoUserNameTV"
 		android:layout_marginTop="30px"
 		android:layout_gravity="center|left"
 		android:layout_marginLeft="20px" />
+
+	<ImageButton
+		android:id="@+id/outButton"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:src="@drawable/outIc"
+		android:layout_marginTop="-110px"
+		android:layout_marginLeft="640px"
+		/>
 
 	<ImageView
 		android:src="@drawable/returnIc"

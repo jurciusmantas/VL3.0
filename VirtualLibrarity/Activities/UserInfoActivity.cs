@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
+using VirtualLibrarity.Activities;
 using VirtualLibrarity.Models;
 using ZXing.Mobile;
 
@@ -19,6 +20,7 @@ namespace VirtualLibrarity
         private Button _buttonTake;
         private Button _buttonReturn;
         private MobileBarcodeScanner _scanner;
+        private Button _buttonQuit;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -33,10 +35,18 @@ namespace VirtualLibrarity
 
             TextView NameTV = FindViewById<TextView>(Resource.Id.infoUserNameTV);
             NameTV.Text += user.UserInfo.Firstname;
-           // TextView SurnameTV = FindViewById<TextView>(Resource.Id.infoUserSurnameTV);
-           // SurnameTV.Text += user.UserInfo.Lastname;
-           // TextView EmailTV = FindViewById<TextView>(Resource.Id.infoUserEmailTV);
-           // EmailTV.Text += user.UserInfo.Email;
+            // TextView SurnameTV = FindViewById<TextView>(Resource.Id.infoUserSurnameTV);
+            // SurnameTV.Text += user.UserInfo.Lastname;
+            // TextView EmailTV = FindViewById<TextView>(Resource.Id.infoUserEmailTV);
+            // EmailTV.Text += user.UserInfo.Email;
+
+            _buttonQuit = FindViewById<Button>(Resource.Id.outButton);
+
+            _buttonQuit.Click += delegate
+            {
+                Intent intent = new Intent(this, typeof(MainActivity));
+                StartActivity(intent);
+            };
 
             _buttonTake = FindViewById<Button>(Resource.Id.btnTake);
             _buttonReturn = FindViewById<Button>(Resource.Id.btnReturn);

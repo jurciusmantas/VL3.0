@@ -85,6 +85,9 @@ namespace VirtualLibrarity.DataWorkers
                     WHERE u.Id = @userId");
             selectBooks.Parameters.AddWithValue("@userId", userId);
 
+
+           
+
             var selectBooksRes = DatabaseConnector.GetData(selectBooks);
 
             if (selectBooksRes.Success)

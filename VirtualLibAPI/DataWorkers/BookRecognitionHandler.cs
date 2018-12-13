@@ -19,6 +19,9 @@ namespace VirtualLibrarity.DataWorkers
                 UserId = @userid");
             updateCopies.Parameters.AddWithValue("@id", qrcode);
             updateCopies.Parameters.AddWithValue("@userid", userid);
+
+
+
            return  DatabaseConnector.UpdateData(updateCopies);  
         }
         public bool Take(string QRCode, int userid)
