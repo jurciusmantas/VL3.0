@@ -20,11 +20,11 @@ namespace VirtualLibrarity
             var result = JsonConvert.DeserializeObject<UserToLoginResponse2>(response.Content);
             return result;
         }
-        public int SendRegisterRequest(string image64String, User user)
+        public int SendRegisterRequest(string image, User user)
         {
             RestClient client = new RestClient(apiUrl);
             var request = new RestRequest("register", Method.POST) { RequestFormat = DataFormat.Json };
-            request.AddBody(new { user, image64String });
+            request.AddBody(new { user, image });
             var responseTask = client.ExecuteTaskAsync(request);
             var response = responseTask.Result;
             try

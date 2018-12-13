@@ -40,7 +40,7 @@ namespace VirtualLibAPI
             if (ok1 && ok2)
             {
                 bool wasInserted = _registerDataHandler.Insert(regArgs.User, id);
-                if (wasInserted)
+                if (!wasInserted)
                     return 0;
             }
 

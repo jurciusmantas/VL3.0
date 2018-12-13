@@ -34,7 +34,7 @@ namespace VirtualLibrarity.Activities
             {
                 SendRequest();
                 _isSendingRequest = false;
-                if (_userResponse == null)
+                if (_userResponse.Exception != null)
                     return;
                 string userinfo = JsonConvert.SerializeObject(_userResponse);
                 Intent intent = new Intent(this, typeof(UserInfoActivity));
@@ -96,8 +96,6 @@ namespace VirtualLibrarity.Activities
         {
             try
             {
-
-
                 if (_userResponse == null)
                 {
                     RunOnUiThread(() =>
@@ -109,7 +107,7 @@ namespace VirtualLibrarity.Activities
                 {
                     RunOnUiThread(() =>
                    Toast.MakeText(this, _userResponse.Exception, ToastLength.Long).Show());
-
+                    GoBack();
                 }
             }
             catch (Exception exc)

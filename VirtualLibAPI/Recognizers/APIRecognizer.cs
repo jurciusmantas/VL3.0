@@ -50,7 +50,7 @@ namespace VirtualLibAPI
                 }
                 else
                 {
-                    return (int)result.LowestBreakIteration + 1;
+                    return (int)result.LowestBreakIteration+1;
                 }
             }
 

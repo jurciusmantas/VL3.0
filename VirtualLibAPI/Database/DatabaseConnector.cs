@@ -16,7 +16,6 @@ namespace VirtualLibrarity.Database
             _conn = new MySqlConnection();
             _conn.ConnectionString = connString;
         }
-
         public static DbResponse GetData(MySqlCommand cmd)
         {
             try
