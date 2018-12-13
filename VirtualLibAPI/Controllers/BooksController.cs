@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using VirtualLibrarity.DataWorkers;
 using VirtualLibrarity.Models;
+using VirtualLibrarity.Models.Entities;
 
 namespace VirtualLibrarity.Controllers
 {
@@ -13,7 +14,7 @@ namespace VirtualLibrarity.Controllers
     {
         private BookRecognitionHandler bookRecognitionHandler = new BookRecognitionHandler();
         // POST: api/Books
-        public bool Post([FromBody ]BookQRCode book)
+        public BookResponse Post([FromBody ]BookQRCode book)
         {
             if (book.IsTaking)
             {

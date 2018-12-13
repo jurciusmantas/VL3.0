@@ -3,6 +3,7 @@ using System.IO;
 using Android.Graphics;
 using Newtonsoft.Json;
 using RestSharp;
+using VirtualLibrarity.Models;
 
 namespace VirtualLibrarity
 {
@@ -48,14 +49,15 @@ namespace VirtualLibrarity
             var result = JsonConvert.DeserializeObject<UserToLoginResponse2>(response.Content);
             return result;
         }
-        public bool SendBookRequest(string QRCode, bool isTaking)
+        public BookResponse SendBookRequest(string QRCode, bool isTaking)
         {
             RestClient client = new RestClient(apiUrl);
             var request = new RestRequest("api/books", Method.POST) { RequestFormat = DataFormat.Json };
             request.AddBody(new { QRCode, isTaking});
             var responseTask = client.ExecuteTaskAsync(request);
             var response = responseTask.Result;
-            return (response.Content == "true");
+            var book = JsonConvert.DeserializeObject<BookResponse>(response.Content);
+            return book;
         }
         public byte[] ConvertToByteArray(Bitmap bitmap)
         {
