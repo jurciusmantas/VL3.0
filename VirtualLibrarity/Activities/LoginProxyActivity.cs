@@ -1,8 +1,6 @@
 ﻿using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Support.Animation;
-using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
 using System;
@@ -19,6 +17,7 @@ namespace VirtualLibrarity.Activities
         private bool _isSendingRequest;
         private string _email;
         private string _password;
+        private Thread _thread, _threadAnim;
         private TextView _animTV;
         private UserToLoginResponse2 _userResponse;
 
@@ -31,7 +30,7 @@ namespace VirtualLibrarity.Activities
             _isSendingRequest = true;
             _animTV = FindViewById<TextView>(Resource.Id.animTV);
 
-            Thread thread = new Thread(delegate ()
+            _thread = new Thread(delegate ()
             {
                 SendRequest();
                 _isSendingRequest = false;
@@ -40,14 +39,16 @@ namespace VirtualLibrarity.Activities
                 string userinfo = JsonConvert.SerializeObject(_userResponse);
                 Intent intent = new Intent(this, typeof(UserInfoActivity));
                 intent.PutExtra("user", userinfo);
+                _threadAnim.Abort();
                 StartActivity(intent);
+
             });
-            Thread threadAnim = new Thread(delegate ()
+            _threadAnim = new Thread(delegate ()
             {
                 StartAnimation();
             });
-            threadAnim.Start();
-            thread.Start();
+            _threadAnim.Start();
+            _thread.Start();
         }
 
         public void StartAnimation()
@@ -97,14 +98,14 @@ namespace VirtualLibrarity.Activities
             {
 
 
-                if (_userResponse is null)
+                if (_userResponse == null)
                 {
                     RunOnUiThread(() =>
                    Toast.MakeText(this, "Did not get response", ToastLength.Long).Show());
                     GoBack();
                 }
 
-                if (_userResponse.Exception == null)
+                if (_userResponse.Exception != null)
                 {
                     RunOnUiThread(() =>
                    Toast.MakeText(this, _userResponse.Exception, ToastLength.Long).Show());

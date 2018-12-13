@@ -98,9 +98,9 @@ namespace VirtualLibrarity
             }
             if (user.BorrowedBooks.Count > 0)
             {
+                LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(Context.LayoutInflaterService);
                 foreach (Book bookModel in user.BorrowedBooks)
                 {
-                    LayoutInflater layoutInflater = (LayoutInflater)BaseContext.GetSystemService(Context.LayoutInflaterService);
                     View addView = layoutInflater.Inflate(Resource.Layout.book_list_item, null);
 
                     TextView AuthorTV = addView.FindViewById<TextView>(Resource.Id.TVAuthor);
