@@ -49,11 +49,11 @@ namespace VirtualLibrarity
             var result = JsonConvert.DeserializeObject<UserToLoginResponse2>(response.Content);
             return result;
         }
-        public BookResponse SendBookRequest(string QRCode, bool isTaking)
+        public BookResponse SendBookRequest(string QRCode, bool isTaking, int userId)
         {
             RestClient client = new RestClient(apiUrl);
             var request = new RestRequest("api/books", Method.POST) { RequestFormat = DataFormat.Json };
-            request.AddBody(new { QRCode, isTaking});
+            request.AddBody(new { QRCode, isTaking, userId});
             var responseTask = client.ExecuteTaskAsync(request);
             var response = responseTask.Result;
             var book = JsonConvert.DeserializeObject<BookResponse>(response.Content);
