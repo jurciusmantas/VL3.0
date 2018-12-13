@@ -12,8 +12,8 @@ namespace VirtualLibrarity.DataWorkers
                 INSERT IGNORE INTO users
                 VALUES(@id, @firstName, @lastName, @email, @password)");
             insert.Parameters.AddWithValue("@id", id);
-            insert.Parameters.AddWithValue("@firstName", user.FirstName);
-            insert.Parameters.AddWithValue("@lastName", user.LastName);
+            insert.Parameters.AddWithValue("@firstName", user.Firstname);
+            insert.Parameters.AddWithValue("@lastName", user.Lastname);
             insert.Parameters.AddWithValue("@email", user.Email);
             insert.Parameters.AddWithValue("@password", user.Password);
 

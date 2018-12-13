@@ -31,7 +31,7 @@ namespace VirtualLibrarity.DataWorkers
             var updateCopies = new MySqlCommand(@"
                 UPDATE Copies
                 SET UserId = @userid
-                WHERE Id = @id");
+                WHERE Id = @id AND UserId is null");
             updateCopies.Parameters.AddWithValue("@userid", userid);
             updateCopies.Parameters.AddWithValue("@id", qrcode);
             var selectBook = new MySqlCommand(@"

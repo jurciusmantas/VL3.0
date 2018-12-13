@@ -16,7 +16,7 @@ namespace VirtualLibrarity
     public partial class User
     {
         [JsonProperty ("Id")]
-        public long Id { get; set; }
+        public int Id { get; set; }
         [JsonProperty("Email")]
         public string Email { get; set; }
         [JsonProperty("Password")]

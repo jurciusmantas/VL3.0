@@ -25,7 +25,7 @@ namespace VirtualLibrarity.DataWorkers
             else
             {
                 var selectUser = new MySqlCommand(@"
-                    SELECT u.FirstName, u.LastName, u.Email
+                    SELECT u.Id, u.FirstName, u.LastName, u.Email
                     FROM users AS u
                     WHERE u.Id = @id");
                 selectUser.Parameters.AddWithValue("@id", id);
@@ -36,8 +36,9 @@ namespace VirtualLibrarity.DataWorkers
                 {
                     user.UserInfo = new User()
                     {
-                        FirstName = selectUserRes.Data.Rows[0]["FirstName"].ToString(),
-                        LastName = selectUserRes.Data.Rows[0]["LastName"].ToString(),
+                        Id = int.Parse(selectUserRes.Data.Rows[0]["Id"].ToString()),
+                        Firstname = selectUserRes.Data.Rows[0]["FirstName"].ToString(),
+                        Lastname = selectUserRes.Data.Rows[0]["LastName"].ToString(),
                         Email = selectUserRes.Data.Rows[0]["Email"].ToString(),
                     };
                     user.BorrowedBooks = GetBooks(id);
@@ -52,7 +53,7 @@ namespace VirtualLibrarity.DataWorkers
         public UserToLoginResponse BuildUserToSend(LoginManualArgs loginManualArgs)
         {
             var selectUser = new MySqlCommand(@"
-                SELECT U.Id, u.FirstName, u.LastName FROM users AS u
+                SELECT u.Id, u.FirstName, u.LastName FROM users AS u
                 WHERE u.Email = @email AND
                 u.Password = @password ");
             selectUser.Parameters.AddWithValue("@email", loginManualArgs.Email);
@@ -66,8 +67,9 @@ namespace VirtualLibrarity.DataWorkers
                 {
                     UserInfo = new User
                     {
-                        FirstName = selectUserRes.Data.Rows[0]["FirstName"].ToString(),
-                        LastName = selectUserRes.Data.Rows[0]["LastName"].ToString(),
+                        Id = int.Parse(selectUserRes.Data.Rows[0]["Id"].ToString()),
+                        Firstname = selectUserRes.Data.Rows[0]["FirstName"].ToString(),
+                        Lastname = selectUserRes.Data.Rows[0]["LastName"].ToString(),
                         Email = loginManualArgs.Email
                     },
                     BorrowedBooks = GetBooks((int)selectUserRes.Data.Rows[0]["Id"])

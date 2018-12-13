@@ -86,7 +86,7 @@ namespace VirtualLibrarity.Activities
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
 
-            _RequestSender.SendBookRequest(result.Text, true);
+            _RequestSender.SendBookRequest(result.Text, true,_user.Id);
             //istrinti is bibliotekos knygu saraso (pagal barcode, kuris yra result.Text)
             //prideti prie user knygu saraso
 
@@ -104,7 +104,7 @@ namespace VirtualLibrarity.Activities
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
 
-            _RequestSender.SendBookRequest(result.Text, false);
+            _RequestSender.SendBookRequest(result.Text, false,_user.Id);
             //istrinti is user knygu saraso (pagal barcode, kuris yra result.Text
             //prideti atga prie bibliotekos knygu saraso
 

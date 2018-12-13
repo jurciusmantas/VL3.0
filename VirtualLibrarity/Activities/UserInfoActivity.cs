@@ -5,6 +5,7 @@ using Android.OS;
 using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using VirtualLibrarity.Activities;
 using VirtualLibrarity.Models;
 using ZXing.Mobile;
@@ -85,6 +86,10 @@ namespace VirtualLibrarity
         {
             _container = FindViewById<LinearLayout>(Resource.Id.container);
 
+            if (user.BorrowedBooks == null)
+            {
+                user.BorrowedBooks = new List<Book>();
+            }
             if (user.BorrowedBooks.Count > 0)
             {
                 foreach (Book bookModel in user.BorrowedBooks)
@@ -114,7 +119,7 @@ namespace VirtualLibrarity
                 msg = "Scanning Canceled!";
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
-            BookResponse bookResponse = _RequestSender.SendBookRequest(result.Text, true);
+            BookResponse bookResponse = _RequestSender.SendBookRequest(result.Text, true,user.UserInfo.Id);
             //istrinti is bibliotekos knygu saraso (pagal barcode, kuris yra result.Text)
             //prideti prie user knygu saraso
             if (bookResponse != null && bookResponse.WasUpdated)
@@ -136,7 +141,7 @@ namespace VirtualLibrarity
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
             _QrCode = result.Text;
-            BookResponse bookResponse = _RequestSender.SendBookRequest(_QrCode, false);
+            BookResponse bookResponse = _RequestSender.SendBookRequest(_QrCode, false, user.UserInfo.Id);
             //istrinti is user knygu saraso (pagal barcode, kuris yra result.Text
             //prideti atga prie bibliotekos knygu saraso
 

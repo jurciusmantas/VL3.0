@@ -90,8 +90,10 @@ namespace VirtualLibrarity.Activities
         }
         private void TryUserIfNull()
         {
-            if (_userResponse == null)
+            if (!(_userResponse != null))
+            {
                 GoBack();
+            }
             
             if (_userResponse.Exception != null)
                 GoBack();
