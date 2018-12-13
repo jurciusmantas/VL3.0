@@ -30,13 +30,4 @@
 		android:text = "QR code :"
 	    android:id="@+id/TVQRCode"/>
 
-	<TextView 
-		android:textSize="35px"
-		android:textStyle="bold"
-		android:textColor="#073a5a"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:text = "Return date :"
-	    android:id="@+id/TVReturnDate"/>
-
 </LinearLayout>

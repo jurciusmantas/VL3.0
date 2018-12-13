@@ -90,21 +90,17 @@ namespace VirtualLibrarity.Activities
         }
         private void TryUserIfNull()
         {
-            if (_userResponse.UserInfo == null)
-            {
-                Toast.MakeText(this, "Did not recieve response", ToastLength.Long).Show();
+            if (_userResponse == null)
                 GoBack();
-            }
+            
             if (_userResponse.Exception != null)
-            {
-                Toast.MakeText(this, _userResponse.Exception, ToastLength.Long).Show();
                 GoBack();
-            }
         }
 
         private void GoBack()
         {
             Intent intent = new Intent(this, typeof(LoginActivity));
+            intent.PutExtra("FromProxy", true);
             StartActivity(intent);
         }
     }

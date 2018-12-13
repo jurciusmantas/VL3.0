@@ -6,7 +6,6 @@ using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
 using VirtualLibrarity.Activities;
-using VirtualLibrarity.Models;
 using ZXing.Mobile;
 
 namespace VirtualLibrarity
@@ -94,12 +93,10 @@ namespace VirtualLibrarity
                     TextView AuthorTV = addView.FindViewById<TextView>(Resource.Id.TVAuthor);
                     TextView TitleTV = addView.FindViewById<TextView>(Resource.Id.TVTitle);
                     TextView QRCodeTV = addView.FindViewById<TextView>(Resource.Id.TVQRCode);
-                    TextView ReturnDateTV = addView.FindViewById<TextView>(Resource.Id.TVReturnDate);
 
                     AuthorTV.Text += bookModel.Author;
                     TitleTV.Text += bookModel.Title;
                     QRCodeTV.Text += bookModel.QRCode;
-                    //ReturnDateTV.Text += bookModel.ReturnDate.ToString();
                     _container.AddView(addView);
                 }
             }

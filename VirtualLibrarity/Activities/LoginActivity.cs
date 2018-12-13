@@ -20,6 +20,9 @@ namespace VirtualLibrarity
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_login);
 
+            if (Intent.HasExtra("FromProxy"))
+                Toast.MakeText(this, "Could not find user", ToastLength.Long).Show();
+
             Button loginManualyButton = FindViewById<Button>(Resource.Id.ManualLoginButton);
 
             loginManualyButton.Click += delegate
