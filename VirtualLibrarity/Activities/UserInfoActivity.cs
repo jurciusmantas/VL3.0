@@ -55,7 +55,7 @@ namespace VirtualLibrarity
 
             _buttonTake.Click += async delegate
                 {
-                    if (user.BorrowedBooks.Count >= 3)
+                    if (user.BorrowedBooks.Count < 3)
                     {
                         _scanner.UseCustomOverlay = false;
                         _scanner.TopText = "Hold the camera up to the barcode\nAbout 15 centimeters away";
