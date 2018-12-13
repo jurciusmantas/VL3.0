@@ -69,6 +69,7 @@
     <Compile Include="Database\DbHelper.cs" />
     <Compile Include="Models\BookFromResponse.cs" />
     <Compile Include="Models\BookQRCode.cs" />
+    <Compile Include="Models\BookResponse.cs" />
     <Compile Include="Models\UserToLoginResponse2.cs" />
     <Compile Include="RequestSender.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

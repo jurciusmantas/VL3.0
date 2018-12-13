@@ -218,6 +218,7 @@
     <Compile Include="Database\DatabaseConnector.cs" />
     <Compile Include="Models\Entities\Book.cs" />
     <Compile Include="Models\Entities\BookQRCode.cs" />
+    <Compile Include="Models\Entities\BookResponse.cs" />
     <Compile Include="Models\Entities\DbResponse.cs" />
     <Compile Include="Models\Entities\LoginManualArgs.cs" />
     <Compile Include="Models\Entities\RegisterArgs.cs" />

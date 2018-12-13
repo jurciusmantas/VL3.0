@@ -20,7 +20,7 @@ namespace VirtualLibrarity
         private Button _buttonTake;
         private Button _buttonReturn;
         private MobileBarcodeScanner _scanner;
-        private Button _buttonQuit;
+        private ImageButton _buttonQuit;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -40,7 +40,7 @@ namespace VirtualLibrarity
             // TextView EmailTV = FindViewById<TextView>(Resource.Id.infoUserEmailTV);
             // EmailTV.Text += user.UserInfo.Email;
 
-            _buttonQuit = FindViewById<Button>(Resource.Id.outButton);
+            _buttonQuit = FindViewById<ImageButton>(Resource.Id.outButton);
 
             _buttonQuit.Click += delegate
             {
@@ -115,8 +115,7 @@ namespace VirtualLibrarity
                 msg = "Scanning Canceled!";
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
-
-            _RequestSender.SendBookRequest(result.Text, true);
+            BookResponse bookResponse = _RequestSender.SendBookRequest(result.Text, true);
             //istrinti is bibliotekos knygu saraso (pagal barcode, kuris yra result.Text)
             //prideti prie user knygu saraso
 
@@ -133,7 +132,7 @@ namespace VirtualLibrarity
                 msg = "Scanning Canceled!";
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
-            _RequestSender.SendBookRequest(result.Text, false);
+            BookResponse bookResponse = _RequestSender.SendBookRequest(result.Text, false);
             //istrinti is user knygu saraso (pagal barcode, kuris yra result.Text
             //prideti atga prie bibliotekos knygu saraso
 

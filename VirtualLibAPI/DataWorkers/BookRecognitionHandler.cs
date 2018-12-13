@@ -4,12 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using VirtualLibrarity.Database;
+using VirtualLibrarity.Models.Entities;
 
 namespace VirtualLibrarity.DataWorkers
 {
     public class BookRecognitionHandler
     {
-        public bool Return(string QRCode, int userid)
+        public BookResponse Return(string QRCode, int userid)
         {
             int qrcode = int.Parse(QRCode);
             var updateCopies = new MySqlCommand(@"
@@ -19,12 +20,12 @@ namespace VirtualLibrarity.DataWorkers
                 UserId = @userid");
             updateCopies.Parameters.AddWithValue("@id", qrcode);
             updateCopies.Parameters.AddWithValue("@userid", userid);
-
-
-
-           return  DatabaseConnector.UpdateData(updateCopies);  
+            return new BookResponse
+            {
+                WasUpdated = DatabaseConnector.UpdateData(updateCopies)
+            }; 
         }
-        public bool Take(string QRCode, int userid)
+        public BookResponse Take(string QRCode, int userid)
         {
             int qrcode = int.Parse(QRCode);
             var updateCopies = new MySqlCommand(@"
@@ -33,7 +34,23 @@ namespace VirtualLibrarity.DataWorkers
                 WHERE Id = @id");
             updateCopies.Parameters.AddWithValue("@userid", userid);
             updateCopies.Parameters.AddWithValue("@id", qrcode);
-            return DatabaseConnector.UpdateData(updateCopies);   //čia reikia return bookinfo;
+            var selectBook = new MySqlCommand(@"
+                SELECT Copies.Id, Books.Author, Books.Title
+                FROM Copies,Books
+                WHERE Copies.Id = @id");
+            selectBook.Parameters.AddWithValue("@id", qrcode);
+            DbResponse response = DatabaseConnector.GetData(selectBook);
+            Book bookInfo = new Book
+            {
+                QRCode = int.Parse(response.Data.Rows[0]["Id"].ToString()),
+                Author = response.Data.Rows[0]["Author"].ToString(),
+                Title = response.Data.Rows[0]["Title"].ToString()
+            };
+            return new BookResponse
+            {
+                BookInfo = bookInfo,
+                WasUpdated = DatabaseConnector.UpdateData(updateCopies)
+            };   
         }
     }
 }
