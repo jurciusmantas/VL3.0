@@ -56,12 +56,9 @@
     <Reference Include="Mono.Android" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Activities\AvailableBooksActivity.cs" />
-    <Compile Include="Activities\LoggedActivity.cs" />
     <Compile Include="Activities\LoginActivity.cs" />
     <Compile Include="Activities\LoginProxyActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
-    <Compile Include="Activities\QrActivity.cs" />
     <Compile Include="Activities\RegisterActivity.cs" />
     <Compile Include="Activities\UserInfoActivity.cs" />
     <Compile Include="Adapters\ListAdapter.cs" />

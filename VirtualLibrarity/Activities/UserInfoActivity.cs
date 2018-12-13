@@ -7,6 +7,7 @@ using Android.Widget;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using VirtualLibrarity.Activities;
+using VirtualLibrarity.Adapters;
 using VirtualLibrarity.Models;
 using ZXing.Mobile;
 
@@ -23,6 +24,7 @@ namespace VirtualLibrarity
         private MobileBarcodeScanner _scanner;
         private ImageButton _buttonQuit;
         private string _QrCode;
+        ListAdapter AllBooksListAdapter;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,13 +36,11 @@ namespace VirtualLibrarity
             user = JsonConvert.DeserializeObject<UserToLoginResponse2>(userString);
             MobileBarcodeScanner.Initialize(Application);
             _scanner = new MobileBarcodeScanner();
+            ListView AllBooksListView = FindViewById<ListView>(Resource.Id.listView);
 
             TextView NameTV = FindViewById<TextView>(Resource.Id.infoUserNameTV);
             NameTV.Text += user.UserInfo.Firstname;
-            // TextView SurnameTV = FindViewById<TextView>(Resource.Id.infoUserSurnameTV);
-            // SurnameTV.Text += user.UserInfo.Lastname;
-            // TextView EmailTV = FindViewById<TextView>(Resource.Id.infoUserEmailTV);
-            // EmailTV.Text += user.UserInfo.Email;
+
 
             _buttonQuit = FindViewById<ImageButton>(Resource.Id.outButton);
 
@@ -78,7 +78,15 @@ namespace VirtualLibrarity
                 HandleScanResultReturn(result);
             };
 
-            AddBooksToReturnList();
+            if (user.BorrowedBooks == null)
+            {
+                user.BorrowedBooks = new List<Book>();
+            }
+
+            AllBooksListAdapter = new ListAdapter(this, user.BorrowedBooks);
+            AllBooksListView.Adapter = AllBooksListAdapter;
+
+            //AddBooksToReturnList();
         }
         protected override void OnResume()
         {
@@ -126,8 +134,7 @@ namespace VirtualLibrarity
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
             BookResponse bookResponse = _RequestSender.SendBookRequest(result.Text, true,user.UserInfo.Id);
-            //istrinti is bibliotekos knygu saraso (pagal barcode, kuris yra result.Text)
-            //prideti prie user knygu saraso
+
             if (bookResponse != null && bookResponse.WasUpdated)
             {
                 user.BorrowedBooks.Add(bookResponse.BookInfo);
@@ -148,8 +155,6 @@ namespace VirtualLibrarity
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
             _QrCode = result.Text;
             BookResponse bookResponse = _RequestSender.SendBookRequest(_QrCode, false, user.UserInfo.Id);
-            //istrinti is user knygu saraso (pagal barcode, kuris yra result.Text
-            //prideti atga prie bibliotekos knygu saraso
 
 
             if (bookResponse != null && bookResponse.WasUpdated)
