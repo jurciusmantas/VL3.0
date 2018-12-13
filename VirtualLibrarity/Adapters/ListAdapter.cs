@@ -16,7 +16,6 @@ namespace VirtualLibrarity.Adapters
     {
         public List<Book> nItems;
         private Context nContext;
-        public List<string> checkedBooks = new List<string>();
 
         public ListAdapter(Context context, List<Book> items)
         {
@@ -48,24 +47,8 @@ namespace VirtualLibrarity.Adapters
             }
 
             string btn = nItems[position].Author + "," + nItems[position].Title;
-            CheckBox cb = row.FindViewById<CheckBox>(Resource.Id.bookBtn);
-            cb.Text = btn;
-
-            cb.Click += (o, e) => {
-                if (cb.Checked)
-                {
-                    checkedBooks.Add(cb.Text);
-                    Console.WriteLine("ckecked");
-                }
-            };
 
             return row;
-        }
-
-        public List<string> GetItems()
-        {
-            return checkedBooks;
-
         }
     }
 }

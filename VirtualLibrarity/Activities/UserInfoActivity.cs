@@ -7,6 +7,7 @@ using Android.Widget;
 using Newtonsoft.Json;
 using System.Collections.Generic;
 using VirtualLibrarity.Activities;
+using VirtualLibrarity.Adapters;
 using VirtualLibrarity.Models;
 using ZXing.Mobile;
 
@@ -23,6 +24,7 @@ namespace VirtualLibrarity
         private MobileBarcodeScanner _scanner;
         private ImageButton _buttonQuit;
         private string _QrCode;
+        ListAdapter AllBooksListAdapter;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -34,6 +36,7 @@ namespace VirtualLibrarity
             user = JsonConvert.DeserializeObject<UserToLoginResponse2>(userString);
             MobileBarcodeScanner.Initialize(Application);
             _scanner = new MobileBarcodeScanner();
+            ListView AllBooksListView = FindViewById<ListView>(Resource.Id.listView);
 
             TextView NameTV = FindViewById<TextView>(Resource.Id.infoUserNameTV);
             NameTV.Text += user.UserInfo.Firstname;
@@ -75,7 +78,15 @@ namespace VirtualLibrarity
                 HandleScanResultReturn(result);
             };
 
-            AddBooksToReturnList();
+            if (user.BorrowedBooks == null)
+            {
+                user.BorrowedBooks = new List<Book>();
+            }
+
+            AllBooksListAdapter = new ListAdapter(this, user.BorrowedBooks);
+            AllBooksListView.Adapter = AllBooksListAdapter;
+
+            //AddBooksToReturnList();
         }
         protected override void OnResume()
         {
