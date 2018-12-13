@@ -189,6 +189,8 @@
     <AndroidResource Include="Resources\drawable\outIc.png" />
     <AndroidResource Include="Resources\drawable\qr.png" />
     <AndroidResource Include="Resources\drawable\returnIc.png" />
+    <AndroidResource Include="Resources\drawable\borrow.png" />
+    <AndroidResource Include="Resources\drawable\takeic.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
