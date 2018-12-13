@@ -21,6 +21,7 @@ namespace VirtualLibrarity
         private Button _buttonReturn;
         private MobileBarcodeScanner _scanner;
         private ImageButton _buttonQuit;
+        private string _QrCode;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -116,7 +117,11 @@ namespace VirtualLibrarity
             BookResponse bookResponse = _RequestSender.SendBookRequest(result.Text, true);
             //istrinti is bibliotekos knygu saraso (pagal barcode, kuris yra result.Text)
             //prideti prie user knygu saraso
-
+            if (bookResponse != null && bookResponse.WasUpdated)
+            {
+                user.BorrowedBooks.Add(bookResponse.BookInfo);
+                Refresh();
+            }
 
         }
 
@@ -130,11 +135,32 @@ namespace VirtualLibrarity
                 msg = "Scanning Canceled!";
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
-            BookResponse bookResponse = _RequestSender.SendBookRequest(result.Text, false);
+            _QrCode = result.Text;
+            BookResponse bookResponse = _RequestSender.SendBookRequest(_QrCode, false);
             //istrinti is user knygu saraso (pagal barcode, kuris yra result.Text
             //prideti atga prie bibliotekos knygu saraso
 
 
+            if (bookResponse != null && bookResponse.WasUpdated)
+            {
+                foreach(var book in user.BorrowedBooks)
+                {
+                    if (book.QRCode.ToString() == _QrCode)
+                    {
+                        user.BorrowedBooks.Remove(book);
+                        break;
+                    }
+                }
+                Refresh();
+            }
+        }
+
+        private void Refresh()
+        {
+            string userinfo = JsonConvert.SerializeObject(user);
+            Intent intent = new Intent(this, typeof(UserInfoActivity));
+            intent.PutExtra("user", userinfo);
+            StartActivity(intent);
         }
 
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
