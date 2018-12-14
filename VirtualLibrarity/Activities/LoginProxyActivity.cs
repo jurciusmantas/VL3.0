@@ -34,7 +34,7 @@ namespace VirtualLibrarity.Activities
             {
                 SendRequest();
                 _isSendingRequest = false;
-                if (_userResponse.Exception != null)
+                if (_userResponse == null)
                     return;
                 string userinfo = JsonConvert.SerializeObject(_userResponse);
                 Intent intent = new Intent(this, typeof(UserInfoActivity));

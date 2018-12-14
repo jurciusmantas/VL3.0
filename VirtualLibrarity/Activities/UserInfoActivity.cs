@@ -83,6 +83,7 @@ namespace VirtualLibrarity
                 user.BorrowedBooks = new List<Book>();
             }
 
+
             AllBooksListAdapter = new ListAdapter(this, user.BorrowedBooks);
             AllBooksListView.Adapter = AllBooksListAdapter;
 

@@ -43,11 +43,16 @@ namespace VirtualLibrarity.Adapters
 
             if (row == null)
             {
-                row = LayoutInflater.From(nContext).Inflate(Resource.Layout.ListRow, null, false);
+                row = LayoutInflater.From(nContext).Inflate(Resource.Layout.book_list_item, null, false);
             }
 
-            string btn = nItems[position].Author + "," + nItems[position].Title;
+            TextView authorTV = row.FindViewById<TextView>(Resource.Id.TVAuthor);
+            TextView titleTV = row.FindViewById<TextView>(Resource.Id.TVTitle);
+            TextView qrCodeTV = row.FindViewById<TextView>(Resource.Id.TVQRCode);
 
+            authorTV.Text = (position+1).ToString()+". Author: "+nItems[position].Author;
+            titleTV.Text = "Title: "+nItems[position].Title;
+            qrCodeTV.Text = "QRCode: "+nItems[position].QRCode.ToString();
             return row;
         }
     }
