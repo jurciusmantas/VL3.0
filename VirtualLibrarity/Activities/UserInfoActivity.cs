@@ -11,10 +11,15 @@ using VirtualLibrarity.Adapters;
 using VirtualLibrarity.Models;
 using ZXing.Mobile;
 
+using V7Toolbar = Android.Support.V7.Widget.Toolbar;
+using Android.Support.V4.Widget;
+using Android.Support.Design.Widget;
+using Android.Support.V7.App;
+
 namespace VirtualLibrarity
 {
     [Activity(Label = "ManualLoginActivity")]
-    public class UserInfoActivity : Activity
+    public class UserInfoActivity : AppCompatActivity
     {
         private UserToLoginResponse2 user;
         private LinearLayout _container;
@@ -25,12 +30,24 @@ namespace VirtualLibrarity
         private ImageButton _buttonQuit;
         private string _QrCode;
         ListAdapter AllBooksListAdapter;
+        DrawerLayout drawerLayout;
+        NavigationView navigationView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             SetContentView(Resource.Layout.activity_user_info);
+
+            //menu
+            var toolbar = FindViewById<V7Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            SupportActionBar.SetDisplayShowTitleEnabled(false);
+            SupportActionBar.SetHomeButtonEnabled(true);
+            SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_menu);
+            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+            navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
+            //
 
             string userString = Intent.GetStringExtra("user");
             user = JsonConvert.DeserializeObject<UserToLoginResponse2>(userString);
@@ -183,6 +200,17 @@ namespace VirtualLibrarity
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, Permission[] grantResults)
         {
             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            switch (item.ItemId)
+            {
+                case Android.Resource.Id.Home:
+                    drawerLayout.OpenDrawer(Android.Support.V4.View.GravityCompat.Start);
+                    return true;
+            }
+            return base.OnOptionsItemSelected(item);
         }
     }
 }

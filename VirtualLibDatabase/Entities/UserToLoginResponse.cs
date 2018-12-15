@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using VirtualLibDatabase;
 
-namespace VirtualLibDatabase.Entities
+namespace VirtualLibAPI.Model.Entities
 {
     public struct UserToLoginResponse
     {
-        public User UserInfo { get; set; }
-        public List<Book> BorrowedBooks { get; set; }
+        public users UserInfo { get; set; }
+        public List<books> BorrowedBooks { get; set; }
         public string ExceptionMessage { get; set; }
     }
 }

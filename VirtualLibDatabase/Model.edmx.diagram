@@ -7,10 +7,11 @@
       <Diagram DiagramId="01f64dfebc4044de9daf3ea6bc66a0ee" Name="Diagram1">
         <EntityTypeShape EntityType="vlModel.books" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="vlModel.copies" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="vlModel.kategorijos" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="vlModel.users" Width="1.5" PointX="0.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="vlModel.users" Width="1.5" PointX="3.875" PointY="3.375" IsExpanded="true" />
         <AssociationConnector Association="vlModel.fk_bookid" ManuallyRouted="false" />
         <AssociationConnector Association="vlModel.fk_userid" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="vlModel.categories" Width="1.5" PointX="1.125" PointY="3.625" />
+        <AssociationConnector Association="vlModel.has" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

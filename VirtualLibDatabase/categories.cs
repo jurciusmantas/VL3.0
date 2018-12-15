@@ -12,10 +12,12 @@ namespace VirtualLibDatabase
     using System;
     using System.Collections.Generic;
     
-    public partial class kategorijos
+    public partial class categories
     {
         public Nullable<int> BookId { get; set; }
-        public string Kategorija { get; set; }
+        public string Category { get; set; }
         public int id { get; set; }
+    
+        public virtual books books { get; set; }
     }
 }

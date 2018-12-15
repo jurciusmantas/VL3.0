@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using VirtualLibDatabase;
 
-namespace VirtualLibrarity.Models.Entities
+namespace VirtualLibAPI.Models.Entities
 {
     public class BookResponse
     {
-        public Book BookInfo { get; set; }
+        public books BookInfo { get; set; }
         public bool WasUpdated { get; set; }
     }
 }

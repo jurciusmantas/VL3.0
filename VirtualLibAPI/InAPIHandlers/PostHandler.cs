@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using VirtualLibDatabase;
+using VirtualLibDatabase.Entities;
 using VirtualLibrarity.DataWorkers;
 using VirtualLibrarity.Interfaces;
 using VirtualLibrarity.Models;
@@ -13,25 +14,33 @@ namespace VirtualLibAPI
         private IReader _fr;
         private IWriter _fw;
         private IRecognizer _rec;
-        private readonly IRegisterDataHandler _registerDataHandler;
-        public PostHandler(IReader fr, IWriter fw, IRecognizer rec, IRegisterDataHandler registerDataHandler)
+        public PostHandler(IReader fr, IWriter fw, IRecognizer rec)
         {
             _fr = fr;
             _fw = fw;
             _rec = rec;
-            _registerDataHandler = registerDataHandler;
         }
         public UserToLoginResponse HandlePost<F>(F face)
             where F : IFace
         {
             int[] ids = _fr.ReadInfo();
             if (ids.Length==0)
-                return new UserToLoginResponseBuilder().BuildUserToSend(Convert.ToInt16(Strings.GetString("errorCode")));
+                return new UserToLoginResponse
+                {
+                    ExceptionMessage = Strings.GetString("ex3Message"),
+                };
             List<string> faces64String = _fr.ReadFaces(ids);
             if (faces64String == null)
-                return new UserToLoginResponseBuilder().BuildUserToSend(Convert.ToInt16(Strings.GetString("errorCode")));
+                return new UserToLoginResponse
+                {
+                    ExceptionMessage = Strings.GetString("ex4Message"),
+                };
             else
-                return new UserToLoginResponseBuilder().BuildUserToSend(_rec.Recognize(faces64String, face.Image64String));
+                return new UserToLoginResponse
+                {
+                    UserInfo = MigrationResolver.Login(_rec.Recognize(faces64String, face.Image64String)),
+                    //BorrowedBooks = 
+                };
         }
         public int HandleRegisterPost(RegisterArgs regArgs)
         {
@@ -46,12 +55,9 @@ namespace VirtualLibAPI
             ok2 = _fw.WriteInfoFile(id);
             if (ok1 && ok2)
             {
-                //bool wasInserted = _registerDataHandler.Insert(regArgs.User, id);
-                MigrationResolver.Register();
-                if (!wasInserted)
+                if (!MigrationResolver.Register(regArgs.User))
                     return 0;
             }
-
             return Convert.ToInt16(Strings.GetString("errorCode"));
         }
 

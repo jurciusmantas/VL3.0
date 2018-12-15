@@ -27,7 +27,7 @@ namespace VirtualLibDatabase
     
         public virtual DbSet<books> books { get; set; }
         public virtual DbSet<copies> copies { get; set; }
-        public virtual DbSet<kategorijos> kategorijos { get; set; }
         public virtual DbSet<users> users { get; set; }
+        public virtual DbSet<categories> categoriesSet { get; set; }
     }
 }

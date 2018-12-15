@@ -77,17 +77,15 @@
     <Compile Include="books.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
+    <Compile Include="categories.cs">
+      <DependentUpon>Model.tt</DependentUpon>
+    </Compile>
     <Compile Include="copies.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\BookResponse.cs" />
-    <Compile Include="Entities\BooksAndCategories.cs" />
     <Compile Include="Entities\DbResponse.cs" />
     <Compile Include="Entities\LoginManualArgs.cs" />
     <Compile Include="Entities\UserToLoginResponse.cs" />
-    <Compile Include="kategorijos.cs">
-      <DependentUpon>Model.tt</DependentUpon>
-    </Compile>
     <Compile Include="MigrationResolver.cs" />
     <Compile Include="Model.Context.cs">
       <AutoGen>True</AutoGen>

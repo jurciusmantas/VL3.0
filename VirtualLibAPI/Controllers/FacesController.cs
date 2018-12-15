@@ -1,7 +1,5 @@
-﻿using Autofac;
-using System.Web.Http;
-using VirtualLibrarity.DataWorkers;
-using VirtualLibrarity.Models;
+﻿using System.Web.Http;
+using VirtualLibDatabase.Entities;
 
 namespace VirtualLibAPI.Controllers
 {
@@ -10,7 +8,7 @@ namespace VirtualLibAPI.Controllers
         private IPostHandler _ph;
        public FacesController()
         {
-            _ph = new PostHandler(new FileFaceReader(), new FileFaceWriter(), new APIRecognizer(new FacePlusRequest()), new RegisterDataHandler());
+            _ph = new PostHandler(new FileFaceReader(), new FileFaceWriter(), new APIRecognizer(new FacePlusRequest()));
         }
        
 

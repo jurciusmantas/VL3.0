@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="vlModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="vlModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="8.0" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="books">
           <Key>
             <PropertyRef Name="Id" />
@@ -14,6 +14,14 @@
           <Property Name="Title" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Popularity" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="BookId" Type="int" />
+          <Property Name="Category" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
         <EntityType Name="copies">
           <Key>
             <PropertyRef Name="Id" />
@@ -21,14 +29,6 @@
           <Property Name="Id" Type="int" Nullable="false" />
           <Property Name="BookId" Type="int" Nullable="false" />
           <Property Name="UserId" Type="int" />
-        </EntityType>
-        <EntityType Name="kategorijos">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="BookId" Type="int" />
-          <Property Name="Kategorija" Type="varchar" MaxLength="45" Nullable="false" />
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -64,10 +64,24 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="has">
+          <End Role="books" Type="Self.books" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="categories" Type="Self.categories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="categories">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="vlModelStoreContainer">
           <EntitySet Name="books" EntityType="Self.books" Schema="vl" store:Type="Tables" />
+          <EntitySet Name="categories" EntityType="Self.categories" Schema="vl" store:Type="Tables" />
           <EntitySet Name="copies" EntityType="Self.copies" Schema="vl" store:Type="Tables" />
-          <EntitySet Name="kategorijos" EntityType="Self.kategorijos" Schema="vl" store:Type="Tables" />
           <EntitySet Name="users" EntityType="Self.users" Schema="vl" store:Type="Tables" />
           <AssociationSet Name="fk_bookid" Association="Self.fk_bookid">
             <End Role="books" EntitySet="books" />
@@ -77,9 +91,12 @@
             <End Role="users" EntitySet="users" />
             <End Role="copies" EntitySet="copies" />
           </AssociationSet>
+          <AssociationSet Name="has" Association="Self.has">
+            <End Role="books" EntitySet="books" />
+            <End Role="categories" EntitySet="categories" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="vlModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -92,6 +109,7 @@
           <Property Name="Title" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Popularity" Type="Int32" Nullable="false" />
           <NavigationProperty Name="copies" Relationship="Self.fk_bookid" FromRole="books" ToRole="copies" />
+          <NavigationProperty Name="categories" Relationship="vlModel.has" FromRole="books" ToRole="categories1" />
         </EntityType>
         <EntityType Name="copies">
           <Key>
@@ -102,14 +120,6 @@
           <Property Name="UserId" Type="Int32" />
           <NavigationProperty Name="books" Relationship="Self.fk_bookid" FromRole="copies" ToRole="books" />
           <NavigationProperty Name="users" Relationship="Self.fk_userid" FromRole="copies" ToRole="users" />
-        </EntityType>
-        <EntityType Name="kategorijos">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="BookId" Type="Int32" />
-          <Property Name="Kategorija" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <EntityType Name="users">
           <Key>
@@ -149,7 +159,6 @@
         <EntityContainer Name="vlEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="books" EntityType="Self.books" />
           <EntitySet Name="copies" EntityType="Self.copies" />
-          <EntitySet Name="kategorijos" EntityType="Self.kategorijos" />
           <EntitySet Name="users" EntityType="Self.users" />
           <AssociationSet Name="fk_bookid" Association="Self.fk_bookid">
             <End Role="books" EntitySet="books" />
@@ -159,7 +168,35 @@
             <End Role="users" EntitySet="users" />
             <End Role="copies" EntitySet="copies" />
           </AssociationSet>
+          <EntitySet Name="categoriesSet" EntityType="vlModel.categories" />
+          <AssociationSet Name="has" Association="vlModel.has">
+            <End Role="books" EntitySet="books" />
+            <End Role="categories1" EntitySet="categoriesSet" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="categories">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="BookId" Type="Int32" />
+          <Property Name="Category" Type="String" Nullable="false" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="books" Relationship="vlModel.has" FromRole="categories1" ToRole="books" />
+        </EntityType>
+        <Association Name="has">
+          <End Type="vlModel.books" Role="books" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="vlModel.categories" Role="categories1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="books">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="categories1">
+              <PropertyRef Name="BookId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -185,15 +222,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="kategorijos">
-            <EntityTypeMapping TypeName="vlModel.kategorijos">
-              <MappingFragment StoreEntitySet="kategorijos">
-                <ScalarProperty Name="BookId" ColumnName="BookId" />
-                <ScalarProperty Name="Kategorija" ColumnName="Kategorija" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="users">
             <EntityTypeMapping TypeName="vlModel.users">
               <MappingFragment StoreEntitySet="users">
@@ -202,6 +230,15 @@
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categoriesSet">
+            <EntityTypeMapping TypeName="vlModel.categories">
+              <MappingFragment StoreEntitySet="categories">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Category" ColumnName="Category" />
+                <ScalarProperty Name="BookId" ColumnName="BookId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

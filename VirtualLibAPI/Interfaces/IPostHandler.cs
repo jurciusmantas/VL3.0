@@ -1,4 +1,5 @@
-﻿using VirtualLibrarity.Interfaces;
+﻿using VirtualLibDatabase.Entities;
+using VirtualLibrarity.Interfaces;
 using VirtualLibrarity.Models;
 
 namespace VirtualLibAPI

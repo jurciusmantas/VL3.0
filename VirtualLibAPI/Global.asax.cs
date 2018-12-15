@@ -4,7 +4,6 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 using VirtualLibrarity;
-using VirtualLibrarity.Database;
 
 namespace VirtualLibAPI
 {
@@ -19,7 +18,6 @@ namespace VirtualLibAPI
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             UnityConfig.RegisterComponents();
-            DatabaseConnector.DatabaseConnectionInit();
         }
     }
 }

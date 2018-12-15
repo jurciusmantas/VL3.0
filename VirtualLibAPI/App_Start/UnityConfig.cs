@@ -22,8 +22,6 @@ namespace VirtualLibrarity
             container.RegisterType<IWriter, FileFaceWriter>();
             container.RegisterType<IRequest, FacePlusRequest>();
             container.RegisterType<IRecognizer, APIRecognizer>();
-            container.RegisterType<IUserToLoginResponseBuilder, UserToLoginResponseBuilder>();
-            container.RegisterType<IRegisterDataHandler, RegisterDataHandler>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
