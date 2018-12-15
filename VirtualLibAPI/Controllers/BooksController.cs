@@ -13,6 +13,11 @@ namespace VirtualLibrarity.Controllers
     public class BooksController : ApiController
     {
         private BookRecognitionHandler bookRecognitionHandler = new BookRecognitionHandler();
+
+        public BooksAndCategories Get()
+        {
+            return new BooksAndCategoriesBuilder().CreateBooksAndCategoriesList();
+        }
         public BookResponse Post([FromBody ]BookQRCode book)
         {
             if (book.IsTaking)

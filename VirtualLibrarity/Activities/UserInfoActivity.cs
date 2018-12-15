@@ -134,7 +134,7 @@ namespace VirtualLibrarity
                 msg = "Scanning Canceled!";
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
-            BookResponse bookResponse = _RequestSender.SendBookRequest(result.Text, true,user.UserInfo.Id);
+            BookResponse bookResponse = _RequestSender.SendUpdateCopiesRequest(result.Text, true,user.UserInfo.Id);
 
             if (bookResponse != null && bookResponse.WasUpdated)
             {
@@ -155,7 +155,7 @@ namespace VirtualLibrarity
 
             this.RunOnUiThread(() => Toast.MakeText(this, msg, ToastLength.Short).Show());
             _QrCode = result.Text;
-            BookResponse bookResponse = _RequestSender.SendBookRequest(_QrCode, false, user.UserInfo.Id);
+            BookResponse bookResponse = _RequestSender.SendUpdateCopiesRequest(_QrCode, false, user.UserInfo.Id);
 
 
             if (bookResponse != null && bookResponse.WasUpdated)
