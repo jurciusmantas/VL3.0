@@ -18,6 +18,7 @@ namespace VirtualLibDatabase
         public books()
         {
             this.copies = new HashSet<copies>();
+            this.categories = new HashSet<categories>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace VirtualLibDatabase
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<copies> copies { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<categories> categories { get; set; }
     }
 }
