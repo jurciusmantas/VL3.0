@@ -23,8 +23,10 @@ namespace VirtualLibAPI
         public UserToLoginResponse HandlePost<F>(F face)
             where F : IFace
         {
-            int id = _fr.ReadInfo();
-            List<string> faces64String = _fr.ReadFaces(id);
+            int[] ids = _fr.ReadInfo();
+            if (ids.Length==0)
+                return new UserToLoginResponseBuilder().BuildUserToSend(Convert.ToInt16(Strings.GetString("errorCode")));
+            List<string> faces64String = _fr.ReadFaces(ids);
             if (faces64String == null)
                 return new UserToLoginResponseBuilder().BuildUserToSend(Convert.ToInt16(Strings.GetString("errorCode")));
             else
@@ -32,9 +34,13 @@ namespace VirtualLibAPI
         }
         public int HandleRegisterPost(RegisterArgs regArgs)
         {
-            int id = _fr.ReadInfo();
+            int[] ids = _fr.ReadInfo();
             bool ok1, ok2;
-            id++;
+            int id;
+            if (ids == null)
+                id = 1;
+            else
+                id=ids.Length+1;
             ok1 = _fw.WriteFaceToFile(id, regArgs.Image);
             ok2 = _fw.WriteInfoFile(id);
             if (ok1 && ok2)

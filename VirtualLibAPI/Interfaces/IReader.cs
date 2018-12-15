@@ -8,7 +8,7 @@ namespace VirtualLibAPI
 {
     public interface IReader
     {
-        int ReadInfo();
-        List<string> ReadFaces(int numbOfFaces);
+        int[] ReadInfo();
+        List<string> ReadFaces(int[] facesid);
     }
 }

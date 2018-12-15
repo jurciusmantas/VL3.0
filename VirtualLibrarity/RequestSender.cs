@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Net;
 using Android.Graphics;
 using Newtonsoft.Json;
 using RestSharp;
@@ -9,7 +10,8 @@ namespace VirtualLibrarity
 {
     class RequestSender
     {
-        private const string apiUrl = "http://192.168.0.182:45457/";
+        private const string apiUrl = "http://192.168.0.103:45455/";
+
         public UserToLoginResponse2 SendLoginRequest(string image64String)
         {
             RestClient client = new RestClient(apiUrl);
@@ -27,17 +29,7 @@ namespace VirtualLibrarity
             request.AddBody(new { user, image });
             var responseTask = client.ExecuteTaskAsync(request);
             var response = responseTask.Result;
-            try
-            {
-                Console.Write(response.Content);
-                Console.Write(response.StatusCode);
-                return int.Parse(response.Content);
-            }
-            catch (Exception ex)
-            {
-                Console.Write(ex.Data);
-                return -1;
-            }
+            return int.Parse(response.Content);
         }
         public UserToLoginResponse2 SendLoginRequest(string email, string password)
         {
