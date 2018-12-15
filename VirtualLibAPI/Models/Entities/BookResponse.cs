@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using VirtualLibrarity.Models.Entities;
+using VirtualLibrarityDatabase.Entities;
 
-namespace VirtualLibrarity.Models.Entities
+namespace VirtualLibAPI.Models.Entities
 {
     public class BookResponse
     {

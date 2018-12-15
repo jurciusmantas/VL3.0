@@ -1,4 +1,4 @@
-﻿namespace VirtualLibrarity.Models.Entities
+﻿namespace VirtualLibrarityDatabase.Entities
 {
     public class Book
     {

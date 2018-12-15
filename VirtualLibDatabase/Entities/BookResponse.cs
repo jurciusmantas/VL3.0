@@ -1,8 +1,10 @@
-﻿namespace VirtualLibDatabase.Entities
+﻿using VirtualLibrarityDatabase.Entities;
+
+namespace VirtualLibDatabase
 {
     public class BookResponse
     {
-        public books BookInfo { get; set; }
+        public Book BookInfo { get; set; }
         public bool WasUpdated { get; set; }
     }
 }

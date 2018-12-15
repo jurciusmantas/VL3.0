@@ -3,8 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using VirtualLibDatabase;
+using VirtualLibDatabase.Entities;
 using VirtualLibrarity.Database;
 using VirtualLibrarity.Models.Entities;
+using VirtualLibrarityDatabase.Entities;
 
 namespace VirtualLibrarity.DataWorkers
 {

@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using System.Web.Http;
+using VirtualLibDatabase.Entities;
 using VirtualLibrarity.DataWorkers;
 using VirtualLibrarity.Models;
 

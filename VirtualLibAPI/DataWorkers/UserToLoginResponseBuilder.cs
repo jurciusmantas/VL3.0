@@ -6,6 +6,9 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Linq;
 using System.Collections.Generic;
+using VirtualLibDatabase.Entities;
+using VirtualLibDatabase;
+using VirtualLibrarityDatabase.Entities;
 
 namespace VirtualLibrarity.DataWorkers
 {
@@ -34,11 +37,11 @@ namespace VirtualLibrarity.DataWorkers
 
                 if (selectUserRes.Success)
                 {
-                    user.UserInfo = new User()
+                    user.UserInfo = new users()
                     {
                         Id = int.Parse(selectUserRes.Data.Rows[0]["Id"].ToString()),
-                        Firstname = selectUserRes.Data.Rows[0]["FirstName"].ToString(),
-                        Lastname = selectUserRes.Data.Rows[0]["LastName"].ToString(),
+                        FirstName = selectUserRes.Data.Rows[0]["FirstName"].ToString(),
+                        LastName = selectUserRes.Data.Rows[0]["LastName"].ToString(),
                         Email = selectUserRes.Data.Rows[0]["Email"].ToString(),
                     };
                     user.BorrowedBooks = GetBooks(id);
@@ -65,11 +68,11 @@ namespace VirtualLibrarity.DataWorkers
             {
                 return new UserToLoginResponse()
                 {
-                    UserInfo = new User
+                    UserInfo = new users
                     {
                         Id = int.Parse(selectUserRes.Data.Rows[0]["Id"].ToString()),
-                        Firstname = selectUserRes.Data.Rows[0]["FirstName"].ToString(),
-                        Lastname = selectUserRes.Data.Rows[0]["LastName"].ToString(),
+                        FirstName = selectUserRes.Data.Rows[0]["FirstName"].ToString(),
+                        LastName = selectUserRes.Data.Rows[0]["LastName"].ToString(),
                         Email = loginManualArgs.Email
                     },
                     BorrowedBooks = GetBooks((int)selectUserRes.Data.Rows[0]["Id"])

@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Diagnostics;
+using VirtualLibDatabase.Entities;
 using VirtualLibrarity.Models.Entities;
 
 namespace VirtualLibrarity.Database

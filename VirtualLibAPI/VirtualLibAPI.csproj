@@ -205,7 +205,6 @@
   <ItemGroup>
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="DataWorkers\BooksAndCategoriesBuilder.cs" />
-    <Compile Include="Models\Entities\BooksAndCategories.cs" />
     <Compile Include="Controllers\BooksController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
@@ -218,14 +217,9 @@
     <Compile Include="Interfaces\IFace.cs" />
     <Compile Include="Interfaces\IResponse.cs" />
     <Compile Include="Database\DatabaseConnector.cs" />
-    <Compile Include="Models\Entities\Book.cs" />
-    <Compile Include="Models\Entities\BookQRCode.cs" />
     <Compile Include="Models\Entities\BookResponse.cs" />
-    <Compile Include="Models\Entities\DbResponse.cs" />
-    <Compile Include="Models\Entities\LoginManualArgs.cs" />
     <Compile Include="Models\Entities\RegisterArgs.cs" />
     <Compile Include="Models\Entities\User.cs" />
-    <Compile Include="Models\Entities\UserToLoginResponse.cs" />
     <Compile Include="Recognizers\APIRecognizer.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />

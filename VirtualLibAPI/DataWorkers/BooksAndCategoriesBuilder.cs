@@ -1,4 +1,5 @@
-﻿using VirtualLibrarity.Models;
+﻿using VirtualLibDatabase.Entities;
+using VirtualLibrarity.Models;
 
 namespace VirtualLibrarity.DataWorkers
 {

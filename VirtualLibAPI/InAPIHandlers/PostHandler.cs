@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Configuration;
 using VirtualLibDatabase;
+using VirtualLibDatabase.Entities;
 using VirtualLibrarity.DataWorkers;
 using VirtualLibrarity.Interfaces;
 using VirtualLibrarity.Models;

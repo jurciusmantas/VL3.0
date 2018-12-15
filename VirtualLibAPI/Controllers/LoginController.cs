@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using VirtualLibDatabase.Entities;
 using VirtualLibrarity.DataWorkers;
 using VirtualLibrarity.Models;
 using VirtualLibrarity.Models.Entities;
