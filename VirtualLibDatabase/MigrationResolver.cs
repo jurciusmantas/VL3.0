@@ -1,4 +1,5 @@
-﻿using VirtualLibDatabase.Services;
+﻿using System.Collections.Generic;
+using VirtualLibDatabase.Services;
 
 namespace VirtualLibDatabase
 {
@@ -20,6 +21,24 @@ namespace VirtualLibDatabase
         {
             var service = new LoginService();
             return service.FaceRecognitionLogin(id);
+        }
+
+        public static bool TakeBook(int userId, int qrCode)
+        {
+            var service = new BookService();
+            return service.Take(userId, qrCode);
+        }
+
+        public static bool ReturnBook(int qrCode)
+        {
+            var service = new BookService();
+            return service.Return(qrCode);
+        }
+
+        public static List<books> GetAllBookList()
+        {
+            var service = new BookService();
+            return service.GetAllBooks();
         }
     }
 }
