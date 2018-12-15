@@ -190,6 +190,11 @@
     <AndroidResource Include="Resources\drawable\returnIc.png" />
     <AndroidResource Include="Resources\drawable\borrow.png" />
     <AndroidResource Include="Resources\drawable\takeic.jpg" />
+    <AndroidResource Include="Resources\drawable\ic_menu.png" />
+    <AndroidResource Include="Resources\drawable\icon.png" />
+    <AndroidResource Include="Resources\menu\menu.axml">
+      <SubType>Designer</SubType>
+    </AndroidResource>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
