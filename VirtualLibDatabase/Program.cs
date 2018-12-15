@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using VirtualLibDatabase.Services;
+using VirtualLibrarity.Models.Entities;
 
 namespace VirtualLibDatabase
 {
@@ -10,12 +12,14 @@ namespace VirtualLibDatabase
     {
         static void Main(string[] args)
         {
-            using (var context = new vlEntities())
+            RegisterService service = new RegisterService();
+            service.Register(new User
             {
-                Console.WriteLine(context.users.Where(u => u.Email == "j")
-                    .FirstOrDefault().Id);
-                Console.ReadKey();
-            }
+                Firstname = "test",
+                Lastname = "test",
+                Email = "test@test.com",
+                Password = "test"
+            });
         }
     }
 }

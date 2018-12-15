@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using VirtualLibDatabase;
 using VirtualLibrarity.DataWorkers;
 using VirtualLibrarity.Interfaces;
 using VirtualLibrarity.Models;
@@ -45,7 +46,8 @@ namespace VirtualLibAPI
             ok2 = _fw.WriteInfoFile(id);
             if (ok1 && ok2)
             {
-                bool wasInserted = _registerDataHandler.Insert(regArgs.User, id);
+                //bool wasInserted = _registerDataHandler.Insert(regArgs.User, id);
+                MigrationResolver.Register();
                 if (!wasInserted)
                     return 0;
             }
