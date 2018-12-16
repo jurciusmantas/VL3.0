@@ -9,16 +9,14 @@ using System.Collections.Generic;
 using VirtualLibrarity.Adapters;
 using VirtualLibrarity.Models;
 using ZXing.Mobile;
-using V7Toolbar = Android.Support.V7.Widget.Toolbar;
-using Android.Support.V4.Widget;
-using Android.Support.Design.Widget;
 using AlertDialog = Android.App.AlertDialog;
 using VirtualLibrarity.Activities;
+using Android.Support.V7.App;
 
 namespace VirtualLibrarity
 {
     [Activity(Label = "Logged In Activity")]
-    public class UserInfoActivity : Activity
+    public class UserInfoActivity : AppCompatActivity
     {
         private UserToLoginResponse2 user;
         private LinearLayout _container;
@@ -28,16 +26,14 @@ namespace VirtualLibrarity
         private MobileBarcodeScanner _scanner;
         private string _QrCode;
         ListAdapter AllBooksListAdapter;
-        DrawerLayout drawerLayout;
-        NavigationView navigationView;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_user_info);
 
-            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-            SetActionBar(toolbar);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
             //------------------------------
 
             string userString = Intent.GetStringExtra("user");
@@ -183,23 +179,12 @@ namespace VirtualLibrarity
             global::ZXing.Net.Mobile.Android.PermissionsHandler.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
 
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            switch (item.ItemId)
-            {
-                case Android.Resource.Id.Home:
-                    drawerLayout.OpenDrawer(Android.Support.V4.View.GravityCompat.Start);
-                    return true;
-            }
-            return base.OnOptionsItemSelected(item);
-        }
-
         public override bool OnCreateOptionsMenu(IMenu menu)
         {
             MenuInflater.Inflate(Resource.Menu.menu, menu);
             return base.OnCreateOptionsMenu(menu);
         }
-        public override bool OnMenuItemSelected(int featureId, IMenuItem item)
+        public override bool OnOptionsItemSelected(IMenuItem item)
         {
             Intent intent;
             switch(item.ItemId)
@@ -248,7 +233,7 @@ namespace VirtualLibrarity
                         break;
                     }
             }
-            return base.OnMenuItemSelected(featureId, item);
+            return base.OnOptionsItemSelected(item);
         }
     }
 }
