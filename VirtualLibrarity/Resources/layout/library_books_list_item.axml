@@ -16,12 +16,35 @@
 
 	<TextView
 		android:id="@+id/TVAuthor2"
-		android:textSize="25px"
+		android:textSize="32px"
 		android:textStyle="bold"
 		android:textColor="#073a5a"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
 		android:text = "Author :"/>
-
-
+	<TextView
+		android:id="@+id/TVCategory2"
+		android:textSize="25px"
+		android:textStyle="bold"
+		android:textColor="#073a5a"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text = "Category :"/>
+	<TextView
+		android:id="@+id/TVPopularity2"
+		android:textSize="25px"
+		android:textStyle="bold"
+		android:textColor="#073a5a"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text = "Popularity :"/>
+	
+	<TextView
+		android:id="@+id/TVCount2"
+		android:textSize="25px"
+		android:textStyle="bold"
+		android:textColor="#073a5a"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text = "Count :"/>
 </LinearLayout>

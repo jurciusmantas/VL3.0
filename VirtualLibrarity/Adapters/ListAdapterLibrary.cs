@@ -9,23 +9,24 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using VirtualLibrarity.Models;
 
 namespace VirtualLibrarity.Adapters
 {
-    public class ListAdapterLibrary : BaseAdapter<Book>
+    public class ListAdapterLibrary : BaseAdapter<Book2>
     {
-        public List<Book> nItems;
+        public List<Book2> nItems;
         private Context nContext;
 
-        public ListAdapterLibrary(Context context, List<Book> items)
+        public ListAdapterLibrary(Context context, List<Book2> items)
         {
             nItems = items;
             nContext = context;
         }
 
-        public Book getItem(int id)
+        public Book2 getItem(int id)
         {
-            return nItems.FirstOrDefault(b => b.QRCode == id);
+            return nItems.FirstOrDefault(b => b.BookInfo.Id == id);
         }
 
         public override int Count => nItems.Count;
@@ -35,7 +36,7 @@ namespace VirtualLibrarity.Adapters
             return position;
         }
 
-        public override Book this[int position] => nItems[position];
+        public override Book2 this[int position] => nItems[position];
 
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
@@ -48,9 +49,15 @@ namespace VirtualLibrarity.Adapters
 
             TextView authorTV = row.FindViewById<TextView>(Resource.Id.TVAuthor2);
             TextView titleTV = row.FindViewById<TextView>(Resource.Id.TVTitle2);
+            TextView categoryTV = row.FindViewById<TextView>(Resource.Id.TVCategory2);
+            TextView popularityTV = row.FindViewById<TextView>(Resource.Id.TVPopularity2);
+            TextView countTV = row.FindViewById<TextView>(Resource.Id.TVCount2);
 
-            authorTV.Text = (position + 1).ToString() + ". Author: " + nItems[position].Author;
-            titleTV.Text = "Title: " + nItems[position].Title;
+            authorTV.Text = nItems[position].BookInfo.Author;
+            titleTV.Text = nItems[position].BookInfo.Title;
+            categoryTV.Text = nItems[position].BookInfo.Category;
+            popularityTV.Text = nItems[position].BookInfo.Popularity.ToString();
+            countTV.Text = nItems[position].Amount.ToString();
             return row;
         }
     }
