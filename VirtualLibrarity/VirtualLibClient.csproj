@@ -172,10 +172,7 @@
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\ic_menu.png" />
-    <Content Include="Resources\layout\activity_search.axml" />
-    <Content Include="Assets\unnamed.jpg">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    <AndroidResource Include="Resources\layout\activity_search.axml" />
     <AndroidResource Include="Resources\layout\activity_available_books.axml" />
     <AndroidResource Include="Resources\layout\activity_logged.axml" />
     <AndroidResource Include="Resources\layout\activity_user_info.axml" />
