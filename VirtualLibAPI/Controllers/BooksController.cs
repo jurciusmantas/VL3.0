@@ -1,18 +1,20 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
+﻿using System.Web.Http;
 using VirtualLibAPI.Models.Entities;
 using VirtualLibAPI.Services;
 using VirtualLibrarity.DataWorkers;
-using VirtualLibrarity.Models.Entities;
 
 namespace VirtualLibrarity.Controllers
 {
     public class BooksController : ApiController
     {
-
-        public List<Book> Get()
+        private readonly IBookService _service;
+        public BooksController(IBookService service)
         {
-            return new BooksBuilder().CreateBooksAndCategoriesList();
+            _service = service;
+        }
+        public BooksAndCategories Get()
+        {
+            return new BooksAndCategoriesBuilder().CreateBooksAndCategoriesList();
         }
         public BookResponse Post([FromBody]BookQRCode book)
         {
@@ -20,14 +22,14 @@ namespace VirtualLibrarity.Controllers
             {
                 return new BookResponse
                 {
-                    //BookInfo = MigrationResolver.TakeBook(book.UserId, int.Parse(book.QRCode)),
+                    //BookInfo = _service.Take(book.UserId, int.Parse(book.QRCode)),
                 };
             }
             else
             {
                 return new BookResponse
                 {
-                    WasUpdated = MigrationResolver.ReturnBook(int.Parse(book.QRCode)),
+                    WasUpdated = _service.Return(int.Parse(book.QRCode)),
                 };
             }
         }

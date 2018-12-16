@@ -3,7 +3,7 @@ using VirtualLibrarity.EFModel;
 
 namespace VirtualLibAPI.Services
 {
-    public class LoginService
+    public class LoginService : ILoginService
     {
         public users ManualLogin(string email, string password)
         {

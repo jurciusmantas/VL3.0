@@ -3,7 +3,7 @@ using VirtualLibrarity.EFModel;
 
 namespace VirtualLibAPI.Services
 {
-    public class RegisterService
+    public class RegisterService : IRegisterService
     {
         public bool Register(users user)
         {

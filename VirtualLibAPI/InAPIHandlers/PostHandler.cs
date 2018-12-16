@@ -10,14 +10,19 @@ namespace VirtualLibAPI
 {
     public class PostHandler : IPostHandler
     {
-        private IReader _fr;
-        private IWriter _fw;
-        private IRecognizer _rec;
-        public PostHandler(IReader fr, IWriter fw, IRecognizer rec)
+        private readonly IReader _fr;
+        private readonly IWriter _fw;
+        private readonly IRecognizer _rec;
+        private readonly IRegisterService _registerService;
+        private readonly ILoginService _loginService;
+        public PostHandler(IReader fr, IWriter fw, IRecognizer rec, IRegisterService registerService, ILoginService loginService)
         {
             _fr = fr;
             _fw = fw;
             _rec = rec;
+            _registerService = registerService;
+            _loginService = loginService;
+
         }
         public UserToLoginResponse HandlePost<F>(F face)
             where F : IFace
@@ -37,7 +42,7 @@ namespace VirtualLibAPI
             else
                 return new UserToLoginResponse
                 {
-                    UserInfo = MigrationResolver.Login(_rec.Recognize(faces64String, face.Image64String)),
+                    UserInfo = _loginService.FaceRecognitionLogin(_rec.Recognize(faces64String, face.Image64String)),
                     //BorrowedBooks = 
                 };
         }
@@ -54,7 +59,7 @@ namespace VirtualLibAPI
             ok2 = _fw.WriteInfoFile(id);
             if (ok1 && ok2)
             {
-                if (!MigrationResolver.Register(regArgs.User))
+                if (!_registerService.Register(regArgs.User))
                     return 0;
             }
             return Convert.ToInt16(Strings.GetString("errorCode"));
