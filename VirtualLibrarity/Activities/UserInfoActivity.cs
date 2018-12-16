@@ -12,14 +12,13 @@ using ZXing.Mobile;
 using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V4.Widget;
 using Android.Support.Design.Widget;
-using Android.Support.V7.App;
 using AlertDialog = Android.App.AlertDialog;
 using VirtualLibrarity.Activities;
 
 namespace VirtualLibrarity
 {
     [Activity(Label = "Logged In Activity")]
-    public class UserInfoActivity : AppCompatActivity
+    public class UserInfoActivity : Activity
     {
         private UserToLoginResponse2 user;
         private LinearLayout _container;
@@ -37,68 +36,8 @@ namespace VirtualLibrarity
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_user_info);
 
-            //menu (from left)
-            var toolbar = FindViewById<V7Toolbar>(Resource.Id.toolbar);
-            SetSupportActionBar(toolbar);
-            SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-            SupportActionBar.SetDisplayShowTitleEnabled(false);
-            SupportActionBar.SetHomeButtonEnabled(true);
-            SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_menu);
-            drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-            navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
-
-            //navigation view
-            navigationView.NavigationItemSelected += (sender, e) =>
-            {
-                e.MenuItem.SetChecked(true);
-
-                switch (e.MenuItem.ItemId)
-                {
-                    case Resource.Id.nav_deleteAccount:
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                        AlertDialog alertDialog = builder.Create();
-
-                        alertDialog.Show();
-
-                        new AlertDialog.Builder(this)
-                            .SetPositiveButton("Yes", (sent, args) =>
-                            {
-                                // User pressed yes
-                                Toast.MakeText(this, @"Your account has been deleted. ", ToastLength.Long).Show();
-                                //back to main activity
-                            })
-                            .SetNegativeButton("No", (sent, args) =>
-                            {
-                                // User pressed no 
-                                Toast.MakeText(this, "Canceled", ToastLength.Long).Show();
-                            })
-                            .SetMessage("Are you sure you want to delete your account?")
-                            .SetTitle("DELETE ACCOUNT")
-                            .SetCancelable(false)
-                            .Show();
-
-                        break;
-
-                    case Resource.Id.nav_search:
-                        Intent intent = new Intent(this, typeof(SearchActivity));
-                        StartActivity(intent);
-                        break;
-
-
-                    case Resource.Id.nav_info:
-                        //user info: nezinau, ar reikia. Arba vietoj sito galetu buti top 3 book.
-                        //pakeisti: resources -> menu -> menu.axml
-                        break;
-
-                    case Resource.Id.nav_quit:
-                        Intent intent2 = new Intent(this, typeof(MainActivity));
-                        StartActivity(intent2);
-                        break;
-                }
-
-            };
-
+            Toolbar toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+            SetActionBar(toolbar);
             //------------------------------
 
             string userString = Intent.GetStringExtra("user");
@@ -253,6 +192,63 @@ namespace VirtualLibrarity
                     return true;
             }
             return base.OnOptionsItemSelected(item);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+        public override bool OnMenuItemSelected(int featureId, IMenuItem item)
+        {
+            Intent intent;
+            switch(item.ItemId)
+            {
+                case Resource.Id.menu_search:
+                    {
+                        intent = new Intent(this, typeof(SearchActivity));
+                        StartActivity(intent);
+                        break;
+                    }
+                case Resource.Id.menu_logout:
+                    {
+                        intent = new Intent(this, typeof(LoginActivity));
+                        StartActivity(intent);
+                        break;
+                    }
+                case Resource.Id.menu_delete:
+                    {
+                        RequestSender rSender = new RequestSender();
+                        if (user.BorrowedBooks.Count > 0)
+                        {
+                            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                            AlertDialog alertDialog = builder.Create();
+
+                            alertDialog.Show();
+
+                            new AlertDialog.Builder(this)
+                                .SetPositiveButton("Yes", (sent, args) =>
+                                {
+                                    if (rSender.SendDeleteUser(user.UserInfo.Id))
+                                    {
+                                        intent = new Intent(this, typeof(MainActivity));
+                                        StartActivity(intent);
+                                    }
+                                    else
+                                        Toast.MakeText(this, "Unable to delete account", ToastLength.Long).Show();
+                                })
+                                .SetNegativeButton("No", (sent, args) => { })
+                                .SetMessage("Are you sure you want to delete your account?")
+                                .SetTitle("DELETE ACCOUNT")
+                                .SetCancelable(false)
+                                .Show();
+                        }
+                        else
+                            Toast.MakeText(this, "Please return all your books first!", ToastLength.Long).Show();
+                        break;
+                    }
+            }
+            return base.OnMenuItemSelected(featureId, item);
         }
     }
 }

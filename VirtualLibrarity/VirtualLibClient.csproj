@@ -172,23 +172,15 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ic_menu.png" />
     <AndroidResource Include="Resources\layout\activity_search.axml" />
-    <AndroidResource Include="Resources\layout\activity_available_books.axml" />
-    <AndroidResource Include="Resources\layout\activity_logged.axml" />
     <AndroidResource Include="Resources\layout\activity_user_info.axml" />
     <AndroidResource Include="Resources\layout\activity_login.axml" />
     <AndroidResource Include="Resources\layout\activity_login_proxy.axml" />
     <AndroidResource Include="Resources\layout\activity_main.axml" />
-    <AndroidResource Include="Resources\layout\activity_qr.axml" />
     <AndroidResource Include="Resources\layout\activity_register.axml" />
     <AndroidResource Include="Resources\layout\book_list_item.axml" />
     <AndroidResource Include="Resources\layout\custom_button_view.axml" />
-    <AndroidResource Include="Resources\layout\ListRow.axml" />
-    <AndroidResource Include="Resources\drawable\all.jpg" />
     <AndroidResource Include="Resources\drawable\logo.png" />
-    <AndroidResource Include="Resources\drawable\outIc.png" />
-    <AndroidResource Include="Resources\drawable\qr.png" />
     <AndroidResource Include="Resources\drawable\returnIc.png" />
     <AndroidResource Include="Resources\drawable\borrow.png" />
     <AndroidResource Include="Resources\drawable\takeic.jpg" />
@@ -197,6 +189,15 @@
       <SubType>Designer</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\layout\library_books_list_item.axml" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_search.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

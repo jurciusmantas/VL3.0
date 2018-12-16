@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu
-    xmlns:android="http://schemas.android.com/apk/res/android">
-  <group android:checkableBehavior="single">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-android:id="@+id/nav_search"
-android:textColor="#073a5a"
-android:title="Search" />
+      android:id="@+id/menu_search"
+      android:icon="@drawable/ic_search"
+      android:title="Search"
+      app:showAsAction="always"/>
     <item
-android:id="@+id/nav_info"
-android:textColor="#073a5a"
-android:title="My info" />
+      android:id="@+id/menu_delete"
+      android:title="Delete"
+      android:icon="@drawable/ic_delete"
+      app:showAsAction="always"/>
     <item
-android:id="@+id/nav_quit"
-android:textColor="#073a5a"
-android:title="Log Out" />
-    <item
-android:id="@+id/nav_deleteAccount"
-android:textColor="#073a5a"
-android:title="Delete My Account" />
-  </group>
+      android:id="@+id/menu_logout"
+      android:title="Logout"
+      android:icon="@drawable/ic_logout"
+      app:showAsAction="always"/>
 </menu>
