@@ -6,11 +6,12 @@
 	android:layout_width="match_parent"
 	android:fitsSystemWindows="true"
 	android:layout_height="match_parent">
-	<android.support.v7.widget.Toolbar
-		android:id="@+id/toolbar"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:background="#1976b7" />
+	<include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        app:layout_constraintTop_toTopOf="parent" />
 	<TextView
 		android:textSize="70px"
 		android:textStyle="bold"
