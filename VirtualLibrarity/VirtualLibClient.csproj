@@ -60,8 +60,10 @@
     <Compile Include="Activities\LoginProxyActivity.cs" />
     <Compile Include="Activities\MainActivity.cs" />
     <Compile Include="Activities\RegisterActivity.cs" />
+    <Compile Include="Activities\SearchActivity.cs" />
     <Compile Include="Activities\UserInfoActivity.cs" />
     <Compile Include="Adapters\ListAdapter.cs" />
+    <Compile Include="Adapters\ListAdapterLibrary.cs" />
     <Compile Include="Models\Book.cs" />
     <Compile Include="Database\DbHelper.cs" />
     <Compile Include="Models\BooksAndCategories.cs" />
@@ -169,6 +171,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <AndroidResource Include="Resources\drawable\ic_menu.png" />
+    <Content Include="Resources\layout\activity_search.axml" />
     <Content Include="Assets\unnamed.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -190,11 +194,11 @@
     <AndroidResource Include="Resources\drawable\returnIc.png" />
     <AndroidResource Include="Resources\drawable\borrow.png" />
     <AndroidResource Include="Resources\drawable\takeic.jpg" />
-    <AndroidResource Include="Resources\drawable\ic_menu.png" />
     <AndroidResource Include="Resources\drawable\icon.png" />
     <AndroidResource Include="Resources\menu\menu.axml">
       <SubType>Designer</SubType>
     </AndroidResource>
+    <AndroidResource Include="Resources\layout\library_books_list_item.axml" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.

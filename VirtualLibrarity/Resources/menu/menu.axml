@@ -4,15 +4,19 @@
   <group android:checkableBehavior="single">
     <item
 android:id="@+id/nav_search"
+android:textColor="#073a5a"
 android:title="Search" />
     <item
-android:id="@+id/nav_topBooks"
-android:title="Top Books" />
-    <item
 android:id="@+id/nav_info"
+android:textColor="#073a5a"
 android:title="My info" />
     <item
+android:id="@+id/nav_quit"
+android:textColor="#073a5a"
+android:title="Log Out" />
+    <item
 android:id="@+id/nav_deleteAccount"
+android:textColor="#073a5a"
 android:title="Delete My Account" />
   </group>
 </menu>

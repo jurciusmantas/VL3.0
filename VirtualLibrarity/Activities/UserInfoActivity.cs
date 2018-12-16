@@ -6,19 +6,19 @@ using Android.Views;
 using Android.Widget;
 using Newtonsoft.Json;
 using System.Collections.Generic;
-using VirtualLibrarity.Activities;
 using VirtualLibrarity.Adapters;
 using VirtualLibrarity.Models;
 using ZXing.Mobile;
-
 using V7Toolbar = Android.Support.V7.Widget.Toolbar;
 using Android.Support.V4.Widget;
 using Android.Support.Design.Widget;
 using Android.Support.V7.App;
+using AlertDialog = Android.App.AlertDialog;
+using VirtualLibrarity.Activities;
 
 namespace VirtualLibrarity
 {
-    [Activity(Label = "ManualLoginActivity")]
+    [Activity(Label = "Logged In Activity")]
     public class UserInfoActivity : AppCompatActivity
     {
         private UserToLoginResponse2 user;
@@ -27,7 +27,6 @@ namespace VirtualLibrarity
         private Button _buttonTake;
         private Button _buttonReturn;
         private MobileBarcodeScanner _scanner;
-        private ImageButton _buttonQuit;
         private string _QrCode;
         ListAdapter AllBooksListAdapter;
         DrawerLayout drawerLayout;
@@ -38,7 +37,7 @@ namespace VirtualLibrarity
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_user_info);
 
-            //menu
+            //menu (from left)
             var toolbar = FindViewById<V7Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
             SupportActionBar.SetDisplayHomeAsUpEnabled(true);
@@ -47,7 +46,60 @@ namespace VirtualLibrarity
             SupportActionBar.SetHomeAsUpIndicator(Resource.Drawable.ic_menu);
             drawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
-            //
+
+            //navigation view
+            navigationView.NavigationItemSelected += (sender, e) =>
+            {
+                e.MenuItem.SetChecked(true);
+
+                switch (e.MenuItem.ItemId)
+                {
+                    case Resource.Id.nav_deleteAccount:
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+                        AlertDialog alertDialog = builder.Create();
+
+                        alertDialog.Show();
+
+                        new AlertDialog.Builder(this)
+                            .SetPositiveButton("Yes", (sent, args) =>
+                            {
+                                // User pressed yes
+                                Toast.MakeText(this, @"Your account has been deleted. ", ToastLength.Long).Show();
+                                //back to main activity
+                            })
+                            .SetNegativeButton("No", (sent, args) =>
+                            {
+                                // User pressed no 
+                                Toast.MakeText(this, "Canceled", ToastLength.Long).Show();
+                            })
+                            .SetMessage("Are you sure you want to delete your account?")
+                            .SetTitle("DELETE ACCOUNT")
+                            .SetCancelable(false)
+                            .Show();
+
+                        break;
+
+                    case Resource.Id.nav_search:
+                        Intent intent = new Intent(this, typeof(SearchActivity));
+                        StartActivity(intent);
+                        break;
+
+
+                    case Resource.Id.nav_info:
+                        //user info: nezinau, ar reikia. Arba vietoj sito galetu buti top 3 book.
+                        //pakeisti: resources -> menu -> menu.axml
+                        break;
+
+                    case Resource.Id.nav_quit:
+                        Intent intent2 = new Intent(this, typeof(MainActivity));
+                        StartActivity(intent2);
+                        break;
+                }
+
+            };
+
+            //------------------------------
 
             string userString = Intent.GetStringExtra("user");
             user = JsonConvert.DeserializeObject<UserToLoginResponse2>(userString);
@@ -57,15 +109,6 @@ namespace VirtualLibrarity
 
             TextView NameTV = FindViewById<TextView>(Resource.Id.infoUserNameTV);
             NameTV.Text += user.UserInfo.Firstname;
-
-
-            _buttonQuit = FindViewById<ImageButton>(Resource.Id.outButton);
-
-            _buttonQuit.Click += delegate
-            {
-                Intent intent = new Intent(this, typeof(MainActivity));
-                StartActivity(intent);
-            };
 
             _buttonTake = FindViewById<Button>(Resource.Id.btnTake);
             _buttonReturn = FindViewById<Button>(Resource.Id.btnReturn);
@@ -103,9 +146,8 @@ namespace VirtualLibrarity
 
             AllBooksListAdapter = new ListAdapter(this, user.BorrowedBooks);
             AllBooksListView.Adapter = AllBooksListAdapter;
-
-            //AddBooksToReturnList();
         }
+
         protected override void OnResume()
         {
             base.OnResume();
