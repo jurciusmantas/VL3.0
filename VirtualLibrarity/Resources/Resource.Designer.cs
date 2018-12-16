@@ -4106,13 +4106,16 @@ namespace VirtualLibrarity
 			public const int support_simple_spinner_dropdown_item = 2130968649;
 			
 			// aapt resource value: 0x7f04004a
-			public const int tooltip = 2130968650;
+			public const int toolbar = 2130968650;
 			
 			// aapt resource value: 0x7f04004b
-			public const int zxingscanneractivitylayout = 2130968651;
+			public const int tooltip = 2130968651;
 			
 			// aapt resource value: 0x7f04004c
-			public const int zxingscannerfragmentlayout = 2130968652;
+			public const int zxingscanneractivitylayout = 2130968652;
+			
+			// aapt resource value: 0x7f04004d
+			public const int zxingscannerfragmentlayout = 2130968653;
 			
 			static Layout()
 			{
