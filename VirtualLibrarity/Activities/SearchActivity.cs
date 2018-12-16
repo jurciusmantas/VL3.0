@@ -19,6 +19,7 @@ namespace VirtualLibrarity
     public class SearchActivity : Activity
     {
         ListAdapterLibrary AllBooksListAdapter;
+        RequestSender _requestSender = new RequestSender();
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -28,7 +29,7 @@ namespace VirtualLibrarity
             //-------------Fill list of books------------------------------
 
             var AllBooksListView = FindViewById<ListView>(Resource.Id.lstSearch);
-            //AllBooksListAdapter = new ListAdapterLibrary(this, user.BorrowedBooks); <<-- ideti bibliotekos knygu sarasa cia
+            AllBooksListAdapter = new ListAdapterLibrary(this, _requestSender.SendGetBooksRequest()); //<<-- ideti bibliotekos knygu sarasa cia
             AllBooksListView.Adapter = AllBooksListAdapter;
 
 
