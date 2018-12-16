@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 using Android.Graphics;
 using Newtonsoft.Json;
 using RestSharp;
@@ -49,12 +50,19 @@ namespace VirtualLibrarity
             var book = JsonConvert.DeserializeObject<BookResponse>(response.Content);
             return book;
         }
-        public BooksAndCategories SendGetBooksAndCategoriesRequest()
+        public List<Book2> SendGetBooksRequest()
         {
             RestClient client = new RestClient(apiUrl);
             var request = new RestRequest("api/books", Method.GET);
             var response = client.Execute(request);
-            return JsonConvert.DeserializeObject<BooksAndCategories>(response.Content);
+            return JsonConvert.DeserializeObject<List<Book2>>(response.Content);
+        }
+        public bool SendDeleteUser(int userId)
+        {
+            RestClient client = new RestClient(apiUrl);
+            var request = new RestRequest("delete", Method.POST) { RequestFormat = DataFormat.Json };
+            var response = client.Execute(request);
+            return (response.Content == "true");
         }
         public byte[] ConvertToByteArray(Bitmap bitmap)
         {

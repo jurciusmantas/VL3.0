@@ -24,6 +24,11 @@ namespace VirtualLibrarity.Controllers
         {
             return _postHandler.HandleRegisterPost(regArgs);
         }
-
+        [HttpPost]
+        [Route("delete")]
+        public bool Delete([FromBody] int UserId)
+        {
+            return false; ////
+        }
     }
 }

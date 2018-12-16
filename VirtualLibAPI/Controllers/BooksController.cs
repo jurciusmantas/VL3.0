@@ -1,7 +1,9 @@
-﻿using System.Web.Http;
+﻿using System.Collections.Generic;
+using System.Web.Http;
 using VirtualLibAPI.Models.Entities;
 using VirtualLibAPI.Services;
 using VirtualLibrarity.DataWorkers;
+using VirtualLibrarity.Models.Entities;
 
 namespace VirtualLibrarity.Controllers
 {
@@ -12,9 +14,9 @@ namespace VirtualLibrarity.Controllers
         {
             _service = service;
         }
-        public BooksAndCategories Get()
+        public List<Book2> Get()
         {
-            return new BooksAndCategoriesBuilder().CreateBooksAndCategoriesList();
+            return new BooksBuilder().CreateBooksAndCategoriesList();
         }
         public BookResponse Post([FromBody]BookQRCode book)
         {
