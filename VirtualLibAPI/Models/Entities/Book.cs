@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using VirtualLibrarity.EFModel;
+﻿using Newtonsoft.Json;
 
-namespace VirtualLibrarity.Models.Entities
+namespace VirtualLibAPI.Models.Entities
 {
-    public class Book
+    public partial class Book
     {
-        public books BookInfo { get; set; }
-        public int Amount { get; set; }
+        public int QRCode { get; set; }
+        public string Title { get; set; }
+        public string Author { get; set; }
+        
     }
 }

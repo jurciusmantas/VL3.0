@@ -6,9 +6,9 @@ namespace VirtualLibrarity.DataWorkers
 {
     public class BooksBuilder
     {
-        public List<Book> CreateBooksAndCategoriesList()
+        public List<Book2> CreateBooksAndCategoriesList()
         {
-            var books = new List<Book>();
+            var books = new List<Book2>();
             return books;
         }
     }
