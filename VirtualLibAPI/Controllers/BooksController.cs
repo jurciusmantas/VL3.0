@@ -1,16 +1,18 @@
-﻿using System.Web.Http;
+﻿using System.Collections.Generic;
+using System.Web.Http;
 using VirtualLibAPI.Models.Entities;
 using VirtualLibAPI.Services;
 using VirtualLibrarity.DataWorkers;
+using VirtualLibrarity.Models.Entities;
 
 namespace VirtualLibrarity.Controllers
 {
     public class BooksController : ApiController
     {
 
-        public BooksAndCategories Get()
+        public List<Book> Get()
         {
-            return new BooksAndCategoriesBuilder().CreateBooksAndCategoriesList();
+            return new BooksBuilder().CreateBooksAndCategoriesList();
         }
         public BookResponse Post([FromBody]BookQRCode book)
         {
