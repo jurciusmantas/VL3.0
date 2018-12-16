@@ -44,5 +44,31 @@ namespace VirtualLibAPI.Services
                 return false;
             }
         }
+
+        public List<books> GetUsersBooks(int id)
+        {
+            using (var context = new vlEntities())
+            {
+                var res = new List<books>();
+                try
+                {
+                    var query =
+                        from book in context.books
+                        join copy in context.copies on book.Id equals copy.BookId
+                        where copy.UserId == id
+                        select new books();
+
+                    foreach(var book in query)
+                    {
+                        res.Add(book);
+                    }
+                    return res;
+                }
+                catch (Exception)
+                {
+                    return null;
+                }
+            }
+        }
     }
 }

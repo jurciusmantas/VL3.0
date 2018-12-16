@@ -298,7 +298,9 @@
     <Compile Include="OutAPIHandlers\FacePlusRequest.cs" />
     <Compile Include="OutAPIHandlers\FacePlusResponse.cs" />
     <Compile Include="Services\BookService.cs" />
+    <Compile Include="Services\DeleteService.cs" />
     <Compile Include="Services\IBookService.cs" />
+    <Compile Include="Services\IDeleteService.cs" />
     <Compile Include="Services\ILoginService.cs" />
     <Compile Include="Services\IRegisterService.cs" />
     <Compile Include="Services\LoginService.cs" />
