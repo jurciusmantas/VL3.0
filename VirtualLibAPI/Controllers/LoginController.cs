@@ -1,21 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using VirtualLibDatabase;
 using VirtualLibDatabase.Entities;
-using VirtualLibrarity.DataWorkers;
-using VirtualLibrarity.Models;
-using VirtualLibrarity.Models.Entities;
 
 namespace VirtualLibrarity.Controllers
 {
+    [RoutePrefix("login")]
     public class LoginController : ApiController
     {
         [HttpPost]
-        [Route("login/byargs")]
+        [Route("byargs")]
         public UserToLoginResponse GetUserInfoByArgs([FromBody]LoginManualArgs loginManualArgs)
         {
             return new UserToLoginResponse
