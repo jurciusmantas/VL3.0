@@ -19,8 +19,9 @@ namespace VirtualLibAPI.Services
                 {
                     var res = context.copies.Where(c => c.Id == qrCode).FirstOrDefault();
                     res.UserId = userId;
+                    var res2 = context.books.Where(c => c.Id == res.Id).FirstOrDefault();
+                    ++res2.Popularity;
                     context.SaveChanges();
-
                     var bookInfo = context.books.Where(b => b.Id == res.Id).FirstOrDefault();
                     return new BookResponse
                     {
