@@ -2,5 +2,6 @@
 {
     public interface IDeleteService
     {
+        bool DeleteUser(int UserId);
     }
 }

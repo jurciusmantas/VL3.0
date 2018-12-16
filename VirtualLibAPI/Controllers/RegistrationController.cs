@@ -1,21 +1,18 @@
-﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+﻿using System.Web.Http;
 using VirtualLibAPI;
 using VirtualLibrarity.Models;
+using VirtualLibrarity.Services;
 
 namespace VirtualLibrarity.Controllers
 {
     public class RegistrationController : ApiController
     {
         private readonly IPostHandler _postHandler;
-        public RegistrationController(IPostHandler postHandler)
+        private readonly IDeleteService _deleteService;
+        public RegistrationController(IPostHandler postHandler, IDeleteService deleteService)
         {
             _postHandler = postHandler;
+            _deleteService = deleteService;
         }
 
         [HttpPost]
@@ -28,7 +25,7 @@ namespace VirtualLibrarity.Controllers
         [Route("delete")]
         public bool Delete([FromBody] int UserId)
         {
-            return false; ////
+            return _deleteService.DeleteUser(UserId);
         }
     }
 }

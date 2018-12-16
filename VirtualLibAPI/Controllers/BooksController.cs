@@ -14,18 +14,16 @@ namespace VirtualLibrarity.Controllers
         {
             _service = service;
         }
-        public List<Book2> Get()
+        public List<Book2> GetAll()
         {
-            return new BooksBuilder().CreateBooksAndCategoriesList();
+            return _service.GetAllBooks();
         }
         public BookResponse Post([FromBody]BookQRCode book)
         {
             if (book.IsTaking)
             {
-                return new BookResponse
-                {
-                    //BookInfo = _service.Take(book.UserId, int.Parse(book.QRCode)),
-                };
+                return _service.Take(book.UserId, int.Parse(book.QRCode));
+    
             }
             else
             {
