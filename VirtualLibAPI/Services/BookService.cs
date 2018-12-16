@@ -7,7 +7,7 @@ using VirtualLibrarity.EFModel;
 
 namespace VirtualLibAPI.Services
 {
-    public class BookService
+    public class BookService : IBookService
     {
         public bool Take(int userId, int qrCode)
         {
@@ -42,14 +42,6 @@ namespace VirtualLibAPI.Services
             catch (Exception)
             {
                 return false;
-            }
-        }
-
-        public List<books> GetAllBooks()
-        {
-            using (var context = new vlEntities())
-            {
-                return context.books.ToList();
             }
         }
     }

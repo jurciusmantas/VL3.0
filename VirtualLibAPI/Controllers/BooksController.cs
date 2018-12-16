@@ -7,7 +7,11 @@ namespace VirtualLibrarity.Controllers
 {
     public class BooksController : ApiController
     {
-
+        private readonly IBookService _service;
+        public BooksController(IBookService service)
+        {
+            _service = service;
+        }
         public BooksAndCategories Get()
         {
             return new BooksAndCategoriesBuilder().CreateBooksAndCategoriesList();
@@ -18,14 +22,14 @@ namespace VirtualLibrarity.Controllers
             {
                 return new BookResponse
                 {
-                    //BookInfo = MigrationResolver.TakeBook(book.UserId, int.Parse(book.QRCode)),
+                    //BookInfo = _service.Take(book.UserId, int.Parse(book.QRCode)),
                 };
             }
             else
             {
                 return new BookResponse
                 {
-                    WasUpdated = MigrationResolver.ReturnBook(int.Parse(book.QRCode)),
+                    WasUpdated = _service.Return(int.Parse(book.QRCode)),
                 };
             }
         }

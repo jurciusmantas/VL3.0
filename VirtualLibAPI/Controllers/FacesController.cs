@@ -1,5 +1,6 @@
 ﻿using System.Web.Http;
 using VirtualLibAPI.Models.Entities;
+using VirtualLibAPI.Services;
 using VirtualLibDatabase.Entities;
 
 namespace VirtualLibAPI.Controllers
@@ -9,7 +10,7 @@ namespace VirtualLibAPI.Controllers
         private IPostHandler _ph;
        public FacesController()
         {
-            _ph = new PostHandler(new FileFaceReader(), new FileFaceWriter(), new APIRecognizer(new FacePlusRequest()));
+            _ph = new PostHandler(new FileFaceReader(), new FileFaceWriter(), new APIRecognizer(new FacePlusRequest()), new RegisterService(), new LoginService());
         }
        
 
