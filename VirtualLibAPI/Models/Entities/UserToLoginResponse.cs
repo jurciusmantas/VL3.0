@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
+using VirtualLibrarity.EFModel;
 
-namespace VirtualLibDatabase.Entities
+namespace VirtualLibAPI.Models.Entities
 {
     public struct UserToLoginResponse
     {

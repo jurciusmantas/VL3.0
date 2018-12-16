@@ -1,4 +1,4 @@
-﻿using VirtualLibDatabase;
+﻿using VirtualLibrarity.EFModel;
 
 namespace VirtualLibAPI.Models.Entities
 {

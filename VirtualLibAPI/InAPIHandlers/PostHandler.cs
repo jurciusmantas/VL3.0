@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using VirtualLibDatabase;
-using VirtualLibDatabase.Entities;
+using VirtualLibAPI.Models.Entities;
+using VirtualLibAPI.Services;
 using VirtualLibrarity.DataWorkers;
 using VirtualLibrarity.Interfaces;
 using VirtualLibrarity.Models;

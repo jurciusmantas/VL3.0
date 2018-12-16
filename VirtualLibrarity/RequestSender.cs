@@ -8,7 +8,7 @@ namespace VirtualLibrarity
 {
     class RequestSender
     {
-        private const string apiUrl = "http://localhost:8080";
+        private const string apiUrl = "http://192.168.0.182:45455/";
 
         public UserToLoginResponse2 SendLoginRequest(string image64String)
         {
@@ -32,7 +32,7 @@ namespace VirtualLibrarity
         public UserToLoginResponse2 SendLoginRequest(string email, string password)
         {
             RestClient client = new RestClient(apiUrl);
-            var request = new RestRequest("/login/byargs", Method.POST) { RequestFormat = DataFormat.Json };
+            var request = new RestRequest("login/byargs", Method.POST) { RequestFormat = DataFormat.Json };
             request.AddBody(new { email, password });
             var responseTask = client.ExecuteTaskAsync(request);
             var response = responseTask.Result;

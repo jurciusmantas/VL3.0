@@ -1,4 +1,5 @@
 ﻿using System.Web.Http;
+using VirtualLibAPI.Models.Entities;
 using VirtualLibDatabase.Entities;
 
 namespace VirtualLibAPI.Controllers

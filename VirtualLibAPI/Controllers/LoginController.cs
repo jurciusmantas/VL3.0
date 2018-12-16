@@ -1,6 +1,6 @@
 ﻿using System.Web.Http;
-using VirtualLibDatabase;
-using VirtualLibDatabase.Entities;
+using VirtualLibAPI.Models.Entities;
+using VirtualLibAPI.Services;
 
 namespace VirtualLibrarity.Controllers
 {

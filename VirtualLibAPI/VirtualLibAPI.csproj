@@ -212,11 +212,37 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="DataWorkers\Strings.cs" />
+    <Compile Include="EFModel\books.cs">
+      <DependentUpon>VirtualLibDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModel\copies.cs">
+      <DependentUpon>VirtualLibDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModel\users.cs">
+      <DependentUpon>VirtualLibDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModel\VirtualLibDatabaseModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VirtualLibDatabaseModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModel\VirtualLibDatabaseModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VirtualLibDatabaseModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EFModel\VirtualLibDatabaseModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VirtualLibDatabaseModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\IFace.cs" />
     <Compile Include="Interfaces\IResponse.cs" />
     <Compile Include="Models\Entities\BookQRCode.cs" />
     <Compile Include="Models\Entities\BookResponse.cs" />
     <Compile Include="Models\Entities\BooksAndCategories.cs" />
+    <Compile Include="Models\Entities\DbResponse.cs" />
+    <Compile Include="Models\Entities\LoginManualArgs.cs" />
     <Compile Include="Models\Entities\RegisterArgs.cs" />
     <Compile Include="Models\Entities\User.cs" />
     <Compile Include="Models\Entities\UserToLoginResponse.cs" />
@@ -271,6 +297,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="OutAPIHandlers\FacePlusRequest.cs" />
     <Compile Include="OutAPIHandlers\FacePlusResponse.cs" />
+    <Compile Include="Services\BookService.cs" />
+    <Compile Include="Services\LoginService.cs" />
+    <Compile Include="Services\MigrationResolver.cs" />
+    <Compile Include="Services\RegisterService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -278,6 +308,16 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="EFModel\VirtualLibDatabaseModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VirtualLibDatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>VirtualLibDatabaseModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EFModel\VirtualLibDatabaseModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VirtualLibDatabaseModel.edmx</DependentUpon>
+      <LastGenOutput>VirtualLibDatabaseModel.cs</LastGenOutput>
+    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -306,6 +346,13 @@
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EntityDeploy Include="EFModel\VirtualLibDatabaseModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VirtualLibDatabaseModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="EFModel\VirtualLibDatabaseModel.edmx.diagram">
+      <DependentUpon>VirtualLibDatabaseModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -363,12 +410,6 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\VirtualLibDatabase\VirtualLibDatabase.csproj">
-      <Project>{ab2055a2-b951-4bb0-9ce8-f1e142a0bc71}</Project>
-      <Name>VirtualLibDatabase</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

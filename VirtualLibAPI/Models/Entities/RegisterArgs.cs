@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using VirtualLibDatabase;
-using VirtualLibrarity.Models.Entities;
+﻿using VirtualLibrarity.EFModel;
 
 namespace VirtualLibrarity.Models
 {

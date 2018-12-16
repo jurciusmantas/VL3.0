@@ -1,9 +1,7 @@
-﻿using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 using VirtualLibAPI.Models.Entities;
-using VirtualLibDatabase;
+using VirtualLibAPI.Services;
 using VirtualLibrarity.DataWorkers;
-using VirtualLibrarity.Models.Entities;
 
 namespace VirtualLibrarity.Controllers
 {

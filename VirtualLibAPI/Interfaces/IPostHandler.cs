@@ -1,4 +1,4 @@
-﻿using VirtualLibDatabase.Entities;
+﻿using VirtualLibAPI.Models.Entities;
 using VirtualLibrarity.Interfaces;
 using VirtualLibrarity.Models;
 
