@@ -17,6 +17,8 @@ namespace VirtualLibrarity.Adapters
     {
         public List<Book2> nItems;
         private Context nContext;
+        private SearchActivity searchActivity;
+        private IEnumerable<Book2> enumerable;
 
         public ListAdapterLibrary(Context context, List<Book2> items)
         {

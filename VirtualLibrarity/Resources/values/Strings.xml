@@ -7,5 +7,10 @@
     <item>Genre</item>
     <item>Author</item>
   </string-array>
+
+  <string-array name="ByPopularity">
+    <item>Most popular in top</item>
+    <item>Less popular in top</item>
+  </string-array>
   
 </resources>
