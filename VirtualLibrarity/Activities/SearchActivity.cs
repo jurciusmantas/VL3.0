@@ -19,7 +19,6 @@ namespace VirtualLibrarity
     [Activity(Label = "Search")]
     public class SearchActivity : Activity
     {
-        private ListAdapterLibrary AllBooksListAdapter;
         private RequestSender _requestSender;
         private List<Book2> _allBooks;
         private Spinner _spinner;
@@ -41,7 +40,7 @@ namespace VirtualLibrarity
             _allBooks = _allBooks.OrderByDescending(b => b.BookInfo.Popularity).ToList();
             _allBooksListView = FindViewById<ListView>(Resource.Id.lstSearch);
             _allBooksListAdapter = new ListAdapterLibrary(this, _allBooks);
-            _allBooksListView.Adapter = AllBooksListAdapter;
+            _allBooksListView.Adapter = _allBooksListAdapter;
 
 
             //---------Spinner------------------------------
