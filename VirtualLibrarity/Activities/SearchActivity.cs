@@ -80,11 +80,13 @@ namespace VirtualLibrarity
                 case "Genre":
                     {
                         _allBooksListAdapter = new ListAdapterLibrary(this, _allBooks.Where(b => b.BookInfo.Category == _spinner2.GetItemAtPosition(e.Position).ToString()).ToList());
+                        _allBooksListView.Adapter = _allBooksListAdapter;
                         break;
                     }
                 case "Author":
                     {
                         _allBooksListAdapter = new ListAdapterLibrary(this, _allBooks.Where(b => b.BookInfo.Author == _spinner2.GetItemAtPosition(e.Position).ToString()).ToList());
+                        _allBooksListView.Adapter = _allBooksListAdapter;
                         break;
                     }
             }
@@ -102,7 +104,7 @@ namespace VirtualLibrarity
                         _spinner2.Adapter = _adapter2;
 
                         _allBooksListAdapter = new ListAdapterLibrary(this, _allBooks.OrderByDescending(b => b.BookInfo.Popularity).ToList());
-                        _allBooksListView.Adapter = AllBooksListAdapter;
+                        _allBooksListView.Adapter = _allBooksListAdapter;
                         _spinner1Choose = "Popularity";
                         break;
                     }
