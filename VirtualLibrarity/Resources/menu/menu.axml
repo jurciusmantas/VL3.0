@@ -7,6 +7,12 @@
       android:icon="@drawable/ic_search"
       android:title="Search"
       app:showAsAction="always"/>
+  <item
+      android:id="@+id/menu_top_books"
+      android:icon="@drawable/top3_ic"
+      android:title="Top 3 books"
+      android:showAsAction="always"/>
+      />
     <item
       android:id="@+id/menu_delete"
       android:title="Delete"

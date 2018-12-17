@@ -195,6 +195,12 @@ namespace VirtualLibrarity
                         StartActivity(intent);
                         break;
                     }
+                case Resource.Id.menu_top_books:
+                    {
+                        intent = new Intent(this, typeof(TopBooksActivity));
+                        StartActivity(intent);
+                        break;
+                    }
                 case Resource.Id.menu_logout:
                     {
                         intent = new Intent(this, typeof(LoginActivity));

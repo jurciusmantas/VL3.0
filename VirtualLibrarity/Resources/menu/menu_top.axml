@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+  <item
+    android:id="@+id/menu_back_from_top"
+    android:icon="@drawable/back_ic"
+    android:title="Back to main"
+    app:showAsAction="always"/>
+  <item
+    android:id="@+id/menu_search_from_topbooks"
+    android:title="Search"
+    android:icon="@drawable/ic_search"
+    app:showAsAction="always"/>
+</menu>
+

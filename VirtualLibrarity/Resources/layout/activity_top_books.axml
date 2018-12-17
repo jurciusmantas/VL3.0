@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:orientation="vertical"
+	android:layout_width="match_parent"
+	android:fitsSystemWindows="true"
+	android:layout_height="match_parent">
+	<include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+
+
+	<TextView
+		android:textSize="60px"
+		android:textStyle="bold"
+		android:textColor="#073a5a"
+		android:text="Top 3 Books "
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:id="@+id/top3txt"
+		android:layout_marginTop="30px"
+		android:layout_gravity="center"
+		android:layout_marginLeft="20px" />
+
+	<ImageView
+		android:id="@+id/logoImg"
+		android:layout_width="150dp"
+		android:layout_height="150dp"
+		android:src="@drawable/top"
+		android:layout_marginTop="60dp"
+		android:layout_marginStart="110dp"
+		android:layout_marginBottom="100dp" />
+	<TextView
+		android:textSize="44px"
+		android:textStyle="bold"
+		android:textColor="#347600"
+		android:background="#A8C1B2"
+		android:text="First: "
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtTopFirst"
+		android:layout_marginTop="0px"
+		android:layout_gravity="left" />
+	<TextView
+		android:textSize="44px"
+		android:textStyle="bold"
+		android:textColor="#347600"
+		android:background="#A8C1B2"
+		android:text="Second: "
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtTopSecond"
+		android:layout_marginTop="60px"
+		android:layout_gravity="center|left" />
+	<TextView
+		android:textSize="44px"
+		android:textStyle="bold"
+		android:textColor="#347600"
+		android:background="#A8C1B2"
+		android:text="Third: "
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:id="@+id/txtTopThird"
+		android:layout_marginTop="60px"
+		android:layout_gravity="center|left"/>
+
+
+</LinearLayout>
+
