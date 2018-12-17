@@ -204,7 +204,7 @@ namespace VirtualLibrarity
                 case Resource.Id.menu_delete:
                     {
                         RequestSender rSender = new RequestSender();
-                        if (user.BorrowedBooks.Count > 0)
+                        if (user.BorrowedBooks.Count == 0)
                         {
                             AlertDialog.Builder builder = new AlertDialog.Builder(this);
                             AlertDialog alertDialog = builder.Create();

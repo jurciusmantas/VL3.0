@@ -19,20 +19,23 @@ namespace VirtualLibAPI.Services
                 {
                     var res = context.copies.Where(c => c.Id == qrCode).FirstOrDefault();
                     res.UserId = userId;
-                    var res2 = context.books.Where(c => c.Id == res.Id).FirstOrDefault();
-                    ++res2.Popularity;
-                    context.SaveChanges();
-                    var bookInfo = context.books.Where(b => b.Id == res.Id).FirstOrDefault();
-                    return new BookResponse
+                    using (var context2 = new vlEntities())
                     {
-                        WasUpdated = true,
-                        BookInfo = new Book
-                        {
-                            Author = bookInfo.Author,
-                            Title = bookInfo.Title,
-                            QRCode = qrCode
-                        }
-                    };
+                        var res2 = context2.books.Where(c => c.Id == res.BookId).FirstOrDefault();
+                        ++res2.Popularity;
+                        context.SaveChanges();
+                        context2.SaveChanges();
+                            return new BookResponse
+                            {
+                                WasUpdated = true,
+                                BookInfo = new Book
+                                {
+                                    Author = res2.Author,
+                                    Title = res2.Title,
+                                    QRCode = qrCode
+                                }
+                            };
+                    }
                 }
             }
             catch (Exception)
@@ -102,7 +105,6 @@ namespace VirtualLibAPI.Services
                         var allBooks = context.books;
                         foreach (var book in allBooks)
                         {
-                            var res2 = context2.copies.Where(c => c.UserId == null && c.Id == book.Id).ToList();
                             res.Add(new Book2
                             {
                                 BookInfo = new Book3
@@ -113,7 +115,7 @@ namespace VirtualLibAPI.Services
                                    Category = book.Category,
                                    Popularity = book.Popularity,
                                 },///
-                                Amount = res2.Count  
+                                Amount = context2.copies.Count(c => c.UserId == null && c.BookId == book.Id),
                             });
                         }
                     }

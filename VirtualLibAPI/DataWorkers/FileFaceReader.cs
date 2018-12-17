@@ -8,7 +8,7 @@ namespace VirtualLibAPI
 {
     public class FileFaceReader:IReader
     {
-        public int[] ReadInfo()
+        public List<int> ReadInfo()
         {
                 string buffer = File.ReadAllText(Strings.GetString("infoFilePath"));
                 if (buffer == "")
@@ -17,11 +17,12 @@ namespace VirtualLibAPI
                 }
                 else
                 {
-                    string[] ids = buffer.Split(',');
-                    return Array.ConvertAll(ids,int.Parse);
+                    string[] idstr = buffer.Split(',');
+                    int[] ids = Array.ConvertAll(idstr,int.Parse);
+                return new List<int>(ids);
                 }
         }
-        public List<string> ReadFaces(int[] idFaces)
+        public List<string> ReadFaces(List<int> idFaces)
         {
             try
             {
@@ -29,7 +30,7 @@ namespace VirtualLibAPI
                 string fileName;
                 string image64String;
                 byte[] imageBytes;
-                if (idFaces.Length == 0)
+                if (idFaces.Count == 0)
                     return null;
                 else
                 {

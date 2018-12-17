@@ -9,5 +9,6 @@ namespace VirtualLibAPI
         UserToLoginResponse HandlePost<F>(F face)
             where F:IFace;
         int HandleRegisterPost(RegisterArgs regArgs);
+        bool DeleteUserFromFile(int userId);
     }
 }
