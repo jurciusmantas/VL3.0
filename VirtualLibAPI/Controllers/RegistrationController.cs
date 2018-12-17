@@ -25,7 +25,10 @@ namespace VirtualLibrarity.Controllers
         [Route("delete")]
         public bool Delete([FromBody] int UserId)
         {
-            return _deleteService.DeleteUser(UserId);
+            if (_postHandler.DeleteUserFromFile(UserId))
+                return _deleteService.DeleteUser(UserId);
+            else
+                return false;
         }
     }
 }

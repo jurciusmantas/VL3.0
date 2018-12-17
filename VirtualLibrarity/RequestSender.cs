@@ -9,7 +9,7 @@ namespace VirtualLibrarity
 {
     class RequestSender
     {
-        private const string apiUrl = "http://192.168.0.182:45457/";
+        private const string apiUrl = "http://192.168.0.182:45455/";
 
         public UserToLoginResponse2 SendLoginRequest(string image64String)
         {
@@ -61,6 +61,7 @@ namespace VirtualLibrarity
         {
             RestClient client = new RestClient(apiUrl);
             var request = new RestRequest("delete", Method.POST) { RequestFormat = DataFormat.Json };
+            request.AddBody(userId);
             var response = client.Execute(request);
             return (response.Content == "true");
         }

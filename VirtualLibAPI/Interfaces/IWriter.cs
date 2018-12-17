@@ -10,5 +10,7 @@ namespace VirtualLibAPI
     {
         bool WriteFaceToFile(int id, string image64String);
         bool WriteInfoFile(int number);
+        bool WriteAllIdsIntoInfoFile(List<int> ids);
+        bool DeleteFile(int name);
     }
 }

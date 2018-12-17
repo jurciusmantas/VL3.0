@@ -10,7 +10,7 @@ namespace VirtualLibAPI.Controllers
         private IPostHandler _ph;
        public FacesController()
         {
-            _ph = new PostHandler(new FileFaceReader(), new FileFaceWriter(), new APIRecognizer(new FacePlusRequest()), new RegisterService(), new LoginService());
+            _ph = new PostHandler(new FileFaceReader(), new FileFaceWriter(), new APIRecognizer(new FacePlusRequest()), new RegisterService(), new LoginService(), new BookService());
         }
        
 
