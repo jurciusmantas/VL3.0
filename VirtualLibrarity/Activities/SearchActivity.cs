@@ -16,7 +16,7 @@ using VirtualLibrarity.Models;
 
 namespace VirtualLibrarity
 {
-    [Activity(Label = "SearchActivity")]
+    [Activity(Label = "Search")]
     public class SearchActivity : Activity
     {
         private ListAdapterLibrary AllBooksListAdapter;

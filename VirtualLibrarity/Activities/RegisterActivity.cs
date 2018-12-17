@@ -7,11 +7,13 @@ using Android.Runtime;
 using Android.Widget;
 using System;
 using VirtualLibrarity.Activities;
+using Android.Support.V7.App;
+using Android.Views;
 
 namespace VirtualLibrarity
 {
-    [Activity(Label = "RegisterActivity")]
-    public class RegisterActivity : Activity
+    [Activity(Label = "Create Your Account")]
+    public class RegisterActivity : AppCompatActivity
     {
         private bool isPhotoTaken;
         private string image64String;
@@ -20,8 +22,10 @@ namespace VirtualLibrarity
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-
             SetContentView(Resource.Layout.activity_register);
+
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar_register);
+            SetSupportActionBar(toolbar);
 
             Button button = FindViewById<Button>(Resource.Id.TakeAPhotoButton);
 
@@ -71,6 +75,33 @@ namespace VirtualLibrarity
             image64String = Convert.ToBase64String(bitmapData);
 
         }
-        
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu_register, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            Intent intent;
+            switch (item.ItemId)
+            {
+                case Resource.Id.menu_back_to_main:
+                    {
+                        intent = new Intent(this, typeof(MainActivity));
+                        StartActivity(intent);
+                        break;
+                    }
+                case Resource.Id.menu_login:
+                    {
+                        intent = new Intent(this, typeof(LoginActivity));
+                        StartActivity(intent);
+                        break;
+                    }
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+
     }
 }
