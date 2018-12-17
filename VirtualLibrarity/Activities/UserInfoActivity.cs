@@ -197,7 +197,9 @@ namespace VirtualLibrarity
                     }
                 case Resource.Id.menu_top_books:
                     {
+                        string userinfo = JsonConvert.SerializeObject(user);
                         intent = new Intent(this, typeof(TopBooksActivity));
+                        intent.PutExtra("user", userinfo);
                         StartActivity(intent);
                         break;
                     }

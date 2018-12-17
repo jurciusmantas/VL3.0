@@ -24,13 +24,14 @@ namespace VirtualLibrarity.Activities
         private TextView firstTV;
         private TextView secondTV;
         private TextView thirdTV;
-
+        private string user;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
+            user = Intent.GetStringExtra("user");
             SetContentView(Resource.Layout.activity_top_books);
 
-            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar_register);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar_top);
             SetSupportActionBar(toolbar);
 
             firstTV = FindViewById<TextView>(Resource.Id.txtTopFirst);
@@ -62,7 +63,8 @@ namespace VirtualLibrarity.Activities
             {
                 case Resource.Id.menu_back_from_top:
                     {
-                        intent = new Intent(this, typeof(MainActivity));
+                        intent = new Intent(this, typeof(UserInfoActivity));
+                        intent.PutExtra("user", user);
                         StartActivity(intent);
                         break;
                     }
