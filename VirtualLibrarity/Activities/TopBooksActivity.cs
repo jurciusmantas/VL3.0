@@ -40,7 +40,7 @@ namespace VirtualLibrarity.Activities
             _requestSender = new RequestSender();
             _allBooks = _requestSender.SendGetBooksRequest();
     
-            _sortedBooks = _allBooks.OrderBy(b => b.BookInfo.Popularity).ToList();
+            _sortedBooks = _allBooks.OrderByDescending(b => b.BookInfo.Popularity).ToList();
             var topThreeBooks = _sortedBooks.Take(3).ToList();
 
             firstTV.Text += topThreeBooks[0].BookInfo.Author + " " + topThreeBooks[0].BookInfo.Title;
