@@ -55,11 +55,11 @@ namespace VirtualLibrarity.Adapters
             TextView popularityTV = row.FindViewById<TextView>(Resource.Id.TVPopularity2);
             TextView countTV = row.FindViewById<TextView>(Resource.Id.TVCount2);
 
-            authorTV.Text = nItems[position].BookInfo.Author;
-            titleTV.Text = nItems[position].BookInfo.Title;
-            categoryTV.Text = nItems[position].BookInfo.Category;
-            popularityTV.Text = nItems[position].BookInfo.Popularity.ToString();
-            countTV.Text = nItems[position].Amount.ToString();
+            authorTV.Text += nItems[position].BookInfo.Author;
+            titleTV.Text += nItems[position].BookInfo.Title;
+            categoryTV.Text += nItems[position].BookInfo.Category;
+            popularityTV.Text += nItems[position].BookInfo.Popularity.ToString();
+            countTV.Text += nItems[position].Amount.ToString();
             return row;
         }
     }

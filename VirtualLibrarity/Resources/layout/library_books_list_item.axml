@@ -21,7 +21,7 @@
 		android:textColor="#073a5a"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text = "Author :"/>
+		android:text = "Author : "/>
 	<TextView
 		android:id="@+id/TVCategory2"
 		android:textSize="25px"
@@ -29,7 +29,7 @@
 		android:textColor="#073a5a"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text = "Category :"/>
+		android:text = "Category : "/>
 	<TextView
 		android:id="@+id/TVPopularity2"
 		android:textSize="25px"
@@ -37,7 +37,7 @@
 		android:textColor="#073a5a"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text = "Popularity :"/>
+		android:text = "Popularity : "/>
 	
 	<TextView
 		android:id="@+id/TVCount2"
@@ -46,7 +46,7 @@
 		android:textColor="#073a5a"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:text = "Count :"/>
+		android:text = "Books left : "/>
 
 	<View
 		android:layout_width="match_parent"

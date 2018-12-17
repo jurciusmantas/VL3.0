@@ -19,11 +19,13 @@
 		android:spinnerMode="dialog"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
+		android:textSize="20px"
 		android:id="@+id/spinner"/>
 	<Spinner
 		android:spinnerMode="dialog"
 		android:layout_width="fill_parent"
 		android:layout_height="wrap_content"
+		android:textSize="20px"
 		android:id="@+id/spinner2"/>
 	<ListView
 		android:minWidth="25px"

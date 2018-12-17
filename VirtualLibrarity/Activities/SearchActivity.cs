@@ -74,7 +74,7 @@ namespace VirtualLibrarity
                         else
                             _allBooksListAdapter = new ListAdapterLibrary(this, _allBooks.OrderBy(b => b.BookInfo.Popularity).ToList());
 
-                        _allBooksListView.Adapter = AllBooksListAdapter;
+                        _allBooksListView.Adapter = _allBooksListAdapter;
                         break;
                     }
                 case "Genre":
@@ -99,7 +99,7 @@ namespace VirtualLibrarity
             {
                 case "Popularity":
                     {
-                        _adapter2 = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, Resource.Array.ByPopularity);
+                        _adapter2 = ArrayAdapter.CreateFromResource(this, Resource.Array.ByPopularity, Android.Resource.Layout.SimpleSpinnerItem);
                         _adapter2.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
                         _spinner2.Adapter = _adapter2;
 
@@ -123,7 +123,7 @@ namespace VirtualLibrarity
                             _allBooks.Select(b => b.BookInfo.Author).Distinct().ToList());
                         _adapter2.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
                         _spinner2.Adapter = _adapter2;
-                        _spinner1Choose = "";
+                        _spinner1Choose = "Author";
                         break;
                     }
             }
