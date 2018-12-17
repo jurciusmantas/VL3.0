@@ -7,11 +7,15 @@ using Android.Runtime;
 using Android.Widget;
 using System;
 using VirtualLibrarity.Activities;
+using Android.Support.V7.App;
+using Android.Views;
+
+
 
 namespace VirtualLibrarity
 {
     [Activity(Label = "Login")]
-    public class LoginActivity : Activity
+    public class LoginActivity : AppCompatActivity
     {
         RequestSender _requestSender=new RequestSender();
         protected override void OnCreate(Bundle savedInstanceState)
@@ -19,6 +23,10 @@ namespace VirtualLibrarity
 
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_login);
+
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            SetSupportActionBar(toolbar);
+
 
             if (Intent.HasExtra("FromProxy"))
                 Toast.MakeText(this, "Could not find user", ToastLength.Long).Show();
@@ -53,6 +61,33 @@ namespace VirtualLibrarity
             intent.PutExtra("isAuto", true);
             intent.PutExtra("image", image64string);
             StartActivity(intent);
+        }
+
+        public override bool OnCreateOptionsMenu(IMenu menu)
+        {
+            MenuInflater.Inflate(Resource.Menu.menu_login, menu);
+            return base.OnCreateOptionsMenu(menu);
+        }
+
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            Intent intent;
+            switch (item.ItemId)
+            {
+                case Resource.Id.menu_back:
+                    {
+                        intent = new Intent(this, typeof(MainActivity));
+                        StartActivity(intent);
+                        break;
+                    }
+                case Resource.Id.menu_register:
+                    {
+                        intent = new Intent(this, typeof(RegisterActivity));
+                        StartActivity(intent);
+                        break;
+                    }
+            }
+            return base.OnOptionsItemSelected(item);
         }
     }
 }
