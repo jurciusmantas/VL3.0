@@ -42,7 +42,9 @@ namespace VirtualLibAPI
                     ExceptionMessage = Strings.GetString("ex4Message"),
                 };
             else
-            { var user = _loginService.FaceRecognitionLogin(_rec.Recognize(faces64String, face.Image64String));
+            {
+                int index =_rec.Recognize(faces64String, face.Image64String);
+                var user = _loginService.FaceRecognitionLogin(ids[index]);
                 if (user == null)
                 {
                     return new UserToLoginResponse();
