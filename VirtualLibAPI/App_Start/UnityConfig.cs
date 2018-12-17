@@ -3,7 +3,7 @@ using Unity;
 using Unity.WebApi;
 using VirtualLibAPI;
 using VirtualLibAPI.Services;
-using VirtualLibrarity.DataWorkers;
+using VirtualLibrarity.Services;
 
 namespace VirtualLibrarity
 {
@@ -26,6 +26,7 @@ namespace VirtualLibrarity
             container.RegisterType<ILoginService, LoginService>();
             container.RegisterType<IRegisterService, RegisterService>();
             container.RegisterType<IBookService, BookService>();
+            container.RegisterType<IDeleteService, DeleteService>();
 
             GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
         }
