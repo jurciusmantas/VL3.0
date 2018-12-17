@@ -73,6 +73,7 @@ namespace VirtualLibAPI
                 id = 1;
             else
                 id = ids[ids.Count-1] + 1;
+            regArgs.User.Id = id;
             ok1 = _fw.WriteFaceToFile(id, regArgs.Image);
             ok2 = _fw.WriteInfoFile(id);
             if (ok1 && ok2)
