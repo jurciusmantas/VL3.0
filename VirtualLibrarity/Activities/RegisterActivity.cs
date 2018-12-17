@@ -24,7 +24,7 @@ namespace VirtualLibrarity
             base.OnCreate(savedInstanceState);
             SetContentView(Resource.Layout.activity_register);
 
-            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
+            var toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar_register);
             SetSupportActionBar(toolbar);
 
             Button button = FindViewById<Button>(Resource.Id.TakeAPhotoButton);
