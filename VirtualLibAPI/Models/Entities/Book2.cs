@@ -8,7 +8,7 @@ namespace VirtualLibrarity.Models.Entities
 {
     public class Book2
     {
-        public books BookInfo { get; set; }
+        public Book3 BookInfo { get; set; }
         public int Amount { get; set; }
     }
 }

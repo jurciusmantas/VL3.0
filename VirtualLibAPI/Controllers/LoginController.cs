@@ -22,7 +22,12 @@ namespace VirtualLibrarity.Controllers
             var borrowedBooks = _bookService.GetUsersBorrowedBooks(user.Id);
             return new UserToLoginResponse
             {
-                UserInfo = user,
+                UserInfo = new Models.Entities.User {
+                    Id = user.Id,
+                    Firstname = user.FirstName,
+                    Lastname = user.LastName,
+                    Email = user.Email,
+                },
                 BorrowedBooks = borrowedBooks,
             };
         }

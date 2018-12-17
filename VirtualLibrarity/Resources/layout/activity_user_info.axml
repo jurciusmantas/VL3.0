@@ -11,7 +11,7 @@
         layout="@layout/toolbar"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        />
 	<TextView
 		android:textSize="70px"
 		android:textStyle="bold"

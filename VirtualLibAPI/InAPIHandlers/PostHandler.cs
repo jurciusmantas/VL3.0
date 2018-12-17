@@ -40,11 +40,19 @@ namespace VirtualLibAPI
                     ExceptionMessage = Strings.GetString("ex4Message"),
                 };
             else
+            { var user = _loginService.FaceRecognitionLogin(_rec.Recognize(faces64String, face.Image64String));
                 return new UserToLoginResponse
                 {
-                    UserInfo = _loginService.FaceRecognitionLogin(_rec.Recognize(faces64String, face.Image64String)),
-                    //BorrowedBooks = 
+                    UserInfo = new VirtualLibrarity.Models.Entities.User
+                    {
+                        Id = user.Id,
+                        Firstname = user.FirstName,
+                        Lastname = user.LastName,
+                        Email = user.Email,
+                        //BorrowedBooks = 
+                    },
                 };
+            }
         }
         public int HandleRegisterPost(RegisterArgs regArgs)
         {

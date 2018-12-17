@@ -97,15 +97,25 @@ namespace VirtualLibAPI.Services
             {
                 try
                 {
-                    var allBooks = context.books;
-                    foreach(var book in allBooks)
+                    using (var context2 = new vlEntities())
                     {
-                        res.Add(new Book2
+                        var allBooks = context.books;
+                        foreach (var book in allBooks)
                         {
-                            BookInfo = book,
-                            Amount = context.copies.Where(c => c.BookId == book.Id)
-                                .SkipWhile(c => c.UserId != null).Count()
-                        });
+                            var res2 = context2.copies.Where(c => c.UserId == null && c.Id == book.Id).ToList();
+                            res.Add(new Book2
+                            {
+                                BookInfo = new Book3
+                                {
+                                   Id=book.Id,
+                                   Author = book.Author,
+                                   Title = book.Title,
+                                   Category = book.Category,
+                                   Popularity = book.Popularity,
+                                },///
+                                Amount = res2.Count  
+                            });
+                        }
                     }
                     return res;
                 }

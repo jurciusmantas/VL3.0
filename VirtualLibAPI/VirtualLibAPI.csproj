@@ -240,6 +240,7 @@
     <Compile Include="Interfaces\IResponse.cs" />
     <Compile Include="Models\Entities\Book.cs" />
     <Compile Include="Models\Entities\Book2.cs" />
+    <Compile Include="Models\Entities\Book3.cs" />
     <Compile Include="Models\Entities\BookQRCode.cs" />
     <Compile Include="Models\Entities\BookResponse.cs" />
     <Compile Include="Models\Entities\DbResponse.cs" />

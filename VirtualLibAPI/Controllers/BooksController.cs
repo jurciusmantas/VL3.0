@@ -14,7 +14,7 @@ namespace VirtualLibrarity.Controllers
         {
             _service = service;
         }
-        public List<Book2> GetAll()
+        public List<Book2> Get()
         {
             return _service.GetAllBooks();
         }
