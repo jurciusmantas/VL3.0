@@ -55,9 +55,9 @@ namespace VirtualLibrarity
 
             //---------Spinner2--------------------------------
             _spinner2 = FindViewById<Spinner>(Resource.Id.spinner2);
-            _spinner2.Prompt = "Choose author/catgeory";
+            _spinner2.Prompt = "Choose filter option";
             _spinner2.ItemSelected += new EventHandler<AdapterView.ItemSelectedEventArgs>(spinner2_ItemSelected);
-            _adapter2 = new ArrayAdapter<string>(this, Android.Resource.Layout.SimpleSpinnerItem, Resource.Array.ByPopularity);
+            _adapter2 = ArrayAdapter.CreateFromResource(this, Resource.Array.ByPopularity, Android.Resource.Layout.SimpleSpinnerItem);
             _adapter2.SetDropDownViewResource(Android.Resource.Layout.SimpleSpinnerDropDownItem);
             _spinner2.Adapter = _adapter2;
         }
